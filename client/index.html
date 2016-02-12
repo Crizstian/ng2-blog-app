@@ -1,0 +1,42 @@
+  <!DOCTYPE html>
+  <html>
+
+  <head>
+    <base href="/">
+    <!--Import Google Icon Font-->
+     <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+     <!--Import materialize.css-->
+     <link type="text/css" rel="stylesheet" href="vendor/css/materialize.min.css"  media="screen,projection"/>
+    <!-- js libs -->
+    <script src="lib/angular2-polyfills.js"></script>
+    <script src="lib/system.src.js"></script>
+    <script src="lib/Rx.js"></script>
+    <script src="lib/angular2.dev.js"></script>
+    <script src="lib/router.dev.js"></script>
+    <script src="lib/http.dev.js"></script>
+    <!-- <script src="lib/jasmine.js"></script>
+    <script src="lib/jasmine-html.js"></script>
+    <script src="lib/boot.js"></script> -->
+    <script>
+        System.config({
+          packages: {
+            app: {
+              format: 'register',
+              defaultExtension: 'js'
+            }
+          }
+        });
+        System.import('app/boot').then(null, console.error.bind(console));
+    </script>
+    <!--Import jQuery before materialize.js-->
+    <script type="text/javascript" src="vendor/js/jquery.min.js"></script>
+    <script type="text/javascript" src="vendor/js/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="vendor/js/materialize.min.js"></script>
+  </head>
+
+  <body>
+
+    <my-app>Loading...</my-app>
+  </body>
+
+  </html>
