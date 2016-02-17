@@ -12,26 +12,38 @@ import {Action,AddPostAction,
 
 import {PostService}          from '../../services/PostService.service';
 import {Logger}               from '../../services/Logger.service';
+import {Post}                 from '../../models/Post';
 
 @Component({
   template: `
-  <h2>HEROES</h2>
-  <div *ngIf="hero">
-    <h3>"{{hero.name}}"</h3>
-    <div>
-      <label>Id: </label>{{hero.id}}</div>
-    <div>
-      <label>Name: </label>
-      <input [(ngModel)]="hero.name" placeholder="name"/>
+  <div *ngIf="post">
+    <div class="row medium-8 large-7 columns">
+      <div class="blog-post">
+        <h3>{{post.title}} <small>3/6/2015</small></h3>
+        <img class="thumbnail" src="{{post.img}}">
+        <p>{{post.content}}</p>
+        <div class="callout">
+          <ul class="menu simple">
+            <li><a href="#">Author: Mike Mikers</a></li>
+            <li><a href="#">Comments: 3</a></li>
+          </ul>
+        </div>
+      </div>
     </div>
-    <button (click)="gotoPosts()">Back</button>
   </div>
+  <div *ngIf="!post">
+    <h3>Blog Post Not Found </h3>
+  </div>
+  <button (click)="gotoPosts()">Back</button>
   `,
 })
 export class PostDetailCompnt {
 
-  constructor(@Inject(dispatcher) private dispatcher: Observer<Action>,
-              @Inject(state)      private state: Observable<AppState>,
+  post:Post;
+
+  constructor(
+              // @Inject(dispatcher) private dispatcher: Observer<Action>,
+              // @Inject(state)      private state: Observable<AppState>,
               private _router: Router,
               private _routeParams:RouteParams,
               private _postService:PostService,
@@ -41,10 +53,14 @@ export class PostDetailCompnt {
 
   ngOnInit() {
     let id = this._routeParams.get('id');
-    // this._service.getHero(id).then(hero => this.hero = hero);
+    this._postService.get(id)
+        .subscribe(
+          data => this.post = data[0],
+          err  => this._logger.log(err),
+          ()   => this._logger.log('post with id fetched: '+id)
+    );
   }
   gotoPosts() {
-    // Like <a [routerLink]="['Heroes']">Heroes</a>
     this._router.navigate(['Articles']);
   }
 }

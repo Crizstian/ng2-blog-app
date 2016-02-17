@@ -1,5 +1,5 @@
 import {Http}       from 'angular2/http';
-import {Injectable,Inject} from 'angular2/core';
+import {Injectable,Inject,Injector} from 'angular2/core';
 import {Post} from '../models/Post';
 import {Action,AddPostAction} from '../logic/Actions';
 import {Observer} from 'rxjs/Observer';
@@ -10,30 +10,34 @@ import 'rxjs/Rx';
 @Injectable()
 export class PostService{
 
+  private dispatcher: Observer<Action>;
   posts:Post[];
 
   private baseAPI: string = 'http://localhost:8000/api/v1/post';
 
-  constructor(private http: Http,
-              @Inject(dispatcher) private dispatcher: Observer<Action>,
-              private _logger:Logger
-            ) {
-              console.log(dispatcher);
-            }
+  constructor(
+      // @Inject(dispatcher)
+      // private dispatcher: Observer<Action>,
+      private http: Http,
+      private _logger:Logger
+    ) {
+      // this.dispatcher: Observer<Action> = this._injector.get(dispatcher);
+      // console.log(this._injector.getOptional(state));
+    }
 
   getAll() {
   	this.http.get(this.baseAPI+'s')
              .map(res => { return res.json(); })
-             .subscribe(posts =>
-                          posts.forEach((item) => {
-                            this.dispatcher.next(new AddPostAction(
-                              item._id,
-                              item.date,
-                              item.title,
-                              item.content,
-                              item.img
-                            ));
-                          }),
+             .subscribe(posts => this.posts = posts,
+                          // posts.forEach((item) => {
+                          //   this.dispatcher.next(new AddPostAction(
+                          //     item._id,
+                          //     item.date,
+                          //     item.title,
+                          //     item.content,
+                          //     item.img
+                          //   ));
+                          // }),
                         err => this._logger.log(err),
                         () => this._logger.log('Data Retrieved From Server'));
   }

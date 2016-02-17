@@ -9,9 +9,9 @@ import {AboutCompnt}                    from './components/about/about.compnt';
 import {ContactCompnt}                  from './components/contact/contact.compnt';
 import {FooterCompnt}                   from './components/footer/footer.compnt';
 import {PostDetailCompnt}               from './components/post/post-detail.compnt';
-import {stateAndDispatcher}             from './logic/stateAndDispatcher';
 import {PostService}                    from './services/PostService.service';
 import {Logger}                         from './services/Logger.service';
+import {stateAndDispatcher}             from './logic/stateAndDispatcher';
 
 declare var jQuery:any;
 declare var foundation:any;
@@ -39,7 +39,7 @@ declare var foundation:any;
                 </div>
               `,
   directives: [HeaderCompnt,RouterOutlet,FooterCompnt],
-  providers: [stateAndDispatcher,PostService,Logger]
+  providers : [stateAndDispatcher,PostService,Logger]
 })
 @RouteConfig([
   {path: '/',           as: 'Home',       component: HomeCompnt, useAsDefault: true},

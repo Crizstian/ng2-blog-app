@@ -12,11 +12,8 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/scan';
 import 'rxjs/add/operator/zip';
 
-const initState  = new OpaqueToken("initState");
-// dispatcher is a RxJS subject, which means that it is both an observable and
-// an observer. So we can pass it into stateFn, and use it to emit actions.
+const initState         = new OpaqueToken("initState");
 export const dispatcher = new OpaqueToken("dispatcher");
-// state is an observable returned by the stateFn function.
 export const state      = new OpaqueToken("state");
 
 export const stateAndDispatcher = [
@@ -27,30 +24,21 @@ export const stateAndDispatcher = [
 
 //function that returns an Observable of the appState
  function stateFn(initState: AppState, actions: Observable<Action>): Observable<AppState> {
-  // *what does combine do?
-  // combine will join the 2 reducers into one single Reducer
-  const combine = s => ({posts: s[0], visibilityFilter: s[1]});
 
-  // *what does the map function to AppState Observable
-  const appStateObs: Observable<AppState> = todos(initState.posts, actions).
+  const combine = s => ({posts: s[0], visibilityFilter: s[1]});
+  const appStateObs: Observable<AppState> = posts(initState.posts, actions).
   zip(filter(initState.visibilityFilter, actions)).map(combine);
 
-  //receive the latest snapshot the moment it subscribes
   return wrapIntoBehavior(initState, appStateObs);
 }
 
  function wrapIntoBehavior(init, obs) {
-  //A behavior subject is an observable that will emit the latest value
-  //to every new subscriber.
   const res = new BehaviorSubject(init);
   obs.subscribe(s => {res.next(s)});
   return res;
 }
 
-function todos(initState: Post[], actions: Observable<Action>): Observable<Post[]> {
-  //Applies an accumulator function over an observable sequence and returns
-  //each intermediate result.
-
+function posts(initState: Post[], actions: Observable<Action>): Observable<Post[]> {
   //State is the accumulator && Action is the current value
   return actions.scan((state, action) => {
 
