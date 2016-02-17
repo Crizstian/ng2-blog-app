@@ -11,4 +11,7 @@ module.exports = {
   BUNDLE: {
     NAME_BUNDLE
   },
+  SASS: [
+    'app/**/*.scss'
+  ]
 };

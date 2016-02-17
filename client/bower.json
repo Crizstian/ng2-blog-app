@@ -17,9 +17,7 @@
     "tests"
   ],
   "dependencies": {
-    "angular-material": "~1.0.3",
-    "Materialize": "materialize#~0.97.5",
-    "jquery": "~2.2.0",
-    "jquery-ui": "~1.11.4"
+    "foundation-sites": "~6.1.0",
+    "motion-ui": "~1.1.0"
   }
 }

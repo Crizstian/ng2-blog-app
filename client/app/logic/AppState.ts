@@ -1,6 +1,6 @@
-import {Todo} from '../models/Todo';
+import {Post} from '../models/Post';
 
 export interface AppState {
-  todos: Todo[];
+  posts: Post[];
   visibilityFilter:string;
 }

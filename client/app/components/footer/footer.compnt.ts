@@ -2,8 +2,8 @@ import {Component} from 'angular2/core';
 
 @Component({
   selector    : 'app-footer',
-  templateUrl : 'app/app-structure/templates/footer.html'
+  templateUrl : 'app/components/footer/templates/footer.html'
 })
-export class AppFooter{
+export class FooterCompnt{
   author:string = 'Cristian Ramirez';
 }

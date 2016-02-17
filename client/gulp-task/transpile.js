@@ -10,8 +10,7 @@ const PATHS      = require('./constant').PATHS;
 const config     = require('../tsconfig.json');
 const files      =
   [
-    "./app/**/*.ts",
-    "!./node_modules/**/*",
+    "./app/**/*.ts"
   ];
 
 
@@ -23,11 +22,11 @@ const files      =
  function transpileTS(name, destPath) {
    return function transpileTS() {
      return gulp.src(files, { since: gulp.lastRun(name) })
-       .pipe(plumber({errorHandler: notify.onError("TS compilation failed !")}))
+      //  .pipe(plumber({errorHandler: notify.onError("TS compilation failed !")}))
        .pipe(sourcemaps.init())
        .pipe(ts(config.compilerOptions))
        .pipe(sourcemaps.write())
-       .pipe(gulp.dest(destPath));
+       .pipe(gulp.dest(`${destPath}/app`));
    }
  }
 
@@ -49,6 +48,5 @@ gulp.task('lintTS', lintTS('lintTS'));
 
 gulp.task('transpile:dist',
   gulp.series(
-    'lintTS',
     transpileTS('transpile:dist', PATHS.DIST_PATH)
   ));

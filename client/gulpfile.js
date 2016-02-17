@@ -6,7 +6,7 @@ const hub         = new HubRegistry(['./gulp-task/*.js']);
 // Development Tasks
 gulp.task('default', gulp.series(
   'clean',
-  gulp.parallel('transpile:dist', 'copy:dist:dev'),
+  gulp.parallel('transpile:dist', 'sass', 'copy:dist:dev'),
   'server',
   'watch'
 ));

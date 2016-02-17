@@ -10,11 +10,25 @@ gulp.task('watch', (done) => {
   );
 
   gulp.watch(
-    ['./app/**/*.(html|css)','index.html'].concat(excludes),
+    ['./app/**/*.html','index.html'].concat(excludes),
     gulp.series(
-      gulp.parallel('copy:dist:template','copy:dist:css'),
+      gulp.parallel('copy:dist:template'),
       'server:reload'
     ));
+
+  gulp.watch(
+    ['./app/**/*.(css|scss)','index.html'].concat(excludes),
+    gulp.series(
+      gulp.parallel('copy:dist:css','sass'),
+      'server:reload'
+    ));
+
+    gulp.watch(
+      ['./app/**/*.(jpg|png|jpeg)'].concat(excludes),
+      gulp.series(
+        gulp.parallel('copy:dist:template'),
+        'server:reload'
+      ));
 
   done();
 
