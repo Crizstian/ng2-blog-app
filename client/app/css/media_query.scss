@@ -1,17 +1,21 @@
 body{
   font-family: "Roboto",sans-serif;
+
 }
 .js-off-canvas-exit{
   background: hsla(0,0%,100%,.0);
 }
 // Small screens
 @media only screen {
+
   .data-oulet{
-    height: 93vh;
+    border: 0px solid green;
+    background: #E5E5E5;
   }
-  .back1{
-    border: 2px solid green;
-  }
+
+  // ------------------------------
+  //  Menu OffCanvas
+  // ------------------------------
 
   #offCanvasLeft{
     background: #1E1E1E;
@@ -40,17 +44,35 @@ body{
 
   .title-bar{
     z-index: 2;
-    height: 7vh;
+    height: 12vh;
+    background: #1E1E1E;
+    box-shadow: 0 0 8px rgba(0, 0, 0, .8);
     .title-bar-left{
-      margin-top: 8px;
+      margin-top: 18px;
       margin-left: 10px;
+      button{
+        margin-left: 12px;
+      }
+      .title-bar-title{
+       color: white;
+       font-size: 1.2rem;
+      }
     }
     .title-bar-right{
-      margin-top: 8px;
-      margin-right: 10px;
+      margin-top: 12px;
+      margin-right: 40px;
+      span{
+        color: white;
+        font-size: 1.2rem;
+      }
+      h5{
+        font-size: 0.8rem;
+      }
     }
   }
-
+  // ------------------------------
+  //  Home Page
+  // ------------------------------
   .back1{
     position: relative;
     width: 100%;
@@ -79,30 +101,159 @@ body{
       }
     }
   }
+
+  // ------------------------------
+  //  articles page
+  // ------------------------------
   .contents{
     .posts{
-      .lead{
-        font-family: "Roboto",sans-serif;
-        font-size: 1.2em;
+      .article-title{
+        .lead{
+          font-family: "Roboto",sans-serif;
+          font-size: 1.8em;
+          padding: 0 0.7em 0.7em 0.7em;
+          color: #2F2F2F;
+        }
       }
-      .subheader{
-        font-family: "Roboto",sans-serif;
-        font-size: 1em;
+      .article-content{
+        .subheader{
+          font-family: "Roboto",sans-serif;
+          font-size: 1em;
+        }
       }
-      img{
-        width: 100%;
-        height: 25vh;
-        overflow: hidden;
+
+      .article-detail{
+        padding-bottom: 1em;
+        span{
+          display: block;
+          font-size: 1.1em;
+          color: #9E9E9E;
+          background: none;
+        }
       }
-    }
-    .tabular{
-      position: relative;
-      width: 100%;
-      margin: 0 0 0 0px;
-      padding: 0;
+      .article-img{
+        position: relative;
+        margin-top: -1em;
+        padding: 0 0 1.5em 6.5em;
+        img{
+          width: 120px;
+          height: 120px;
+          border-radius: 10px;
+          box-shadow: 0 0 8px rgba(0, 0, 0, .8);
+        }
+      }
     }
   }
 
+  // ------------------------------
+  // post detail page
+  // ------------------------------
+
+    .post-detail{
+      .blog-post{
+
+        .blog-title{
+          text-align: center;
+          padding: 0.6em;
+          h3{
+            font-size: 2rem;
+          }
+          .author{
+            font-style: italic;
+            color: #9E9E9E;
+            font-size: 0.9em;
+          }
+          .label{
+            font-size: 0.9em;
+          }
+        }
+
+        .blog-img{
+          img{
+            border: none;
+            width: 100%;
+          }
+        }
+
+        .blog-content{
+          .title{
+            font-weight: bold;
+            text-transform: uppercase;
+            padding: 0.5em;
+            text-align: center;
+          }
+          .content{
+            padding: 0 0.5em;
+            font-size: 1rem;
+            font-weight: 200;
+            color: #2F2F2F;
+          }
+        }
+
+        .blog-sign{
+          .sign{
+            font-style: italic;
+            color: #9E9E9E;
+            font-size: 1em;
+            font-style: italic;
+            span{
+              color: #2F97FF;
+            }
+          }
+          .social{
+            span{
+              cursor: pointer;
+              font-size: 1.4rem;
+            }
+          }
+        }
+      }
+      .sidebar{
+        .sidebar-img{
+          position: relative;
+          margin-top: -1em;
+          padding: 0 0 1.5em 6.5em;
+          img{
+            width: 120px;
+          	height: 120px;
+          	border-radius: 150px;
+          	box-shadow: 0 0 8px rgba(0, 0, 0, .8);
+          }
+        }
+        .sidebar-title{
+          h5{
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+          }
+        }
+        .content{
+          padding: 0.5em;
+          font-size: 0.8rem;
+          font-weight: 200;
+          color: #2F2F2F;
+          span{
+            font-style: italic;
+            font-size: 1rem;
+            color: #2F97FF;
+          }
+        }
+        .social{
+          span{
+            color: #2F97FF;
+            background: none;
+            cursor: pointer;
+            font-size: 1.4rem;
+            &:hover{
+              color: white;
+              background: #2F97FF;
+            }
+          }
+        }
+      }
+    }
+
+  // ------------------------------
   footer{
     display: none;
   }
