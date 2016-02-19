@@ -1,0 +1,49 @@
+<br>
+  <div class="tools">
+
+    <div class="row small-up-1 medium-up-2 large-up-3">
+      <div class="column">
+
+        <div class="callout">
+          <div class="section">
+            <h3><i class="mdi mdi-factory"></i> Admin section</h3>
+            <h5><i class="mdi mdi-account"></i> User: Cristian Ramirez</h5>
+          </div>
+        </div>
+
+        <div class="callout" *ngFor="#tool of managementTools">
+
+          <div class="media-object">
+            <div class="media-object-section">
+              <div class="thumbnail">
+                <img src= "../app/img/back1.jpg">
+              </div>
+            </div>
+            <div class="media-object-section">
+              <div class="tool-title">
+                <p class="lead">
+                 <i class="mdi mdi-view-carousel"></i> {{tool.title}}
+                </p>
+              </div>
+
+              <div class="tool-img">
+                <!-- <img src="{{tool.img}}" alt="image of a planet called Pegasi B"> -->
+              </div>
+
+              <div class="tool-detail">
+                <span class="label"><i class="mdi mdi-rocket"></i> Number of  {{tool.title}}: {{tool.num}}</span>
+                <span class="label"><i class="mdi mdi-calendar"></i> Last modification: {{tool.date}}</span>
+                <span class="label"><i class="mdi mdi-account"></i> Last user: {{tool.user}}</span>
+              </div>
+
+              <a class="button hollow" (click)="openSection(tool.link)"><i class="mdi mdi-settings"></i> Configure</a>
+              <a class="button hollow" (click)="deleteSection(tool.link)"><i class="mdi mdi-delete"></i> Delete</a>
+            </div>
+          </div>
+
+      </div>
+
+    </div>
+  </div>
+
+</div>

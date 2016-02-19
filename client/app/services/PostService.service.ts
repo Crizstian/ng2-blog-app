@@ -10,7 +10,6 @@ import 'rxjs/Rx';
 @Injectable()
 export class PostService{
 
-  private dispatcher: Observer<Action>;
   posts:Post[];
 
   private baseAPI: string = 'http://localhost:8000/api/v1/post';
@@ -26,20 +25,8 @@ export class PostService{
     }
 
   getAll() {
-  	this.http.get(this.baseAPI+'s')
-             .map(res => { return res.json(); })
-             .subscribe(posts => this.posts = posts,
-                          // posts.forEach((item) => {
-                          //   this.dispatcher.next(new AddPostAction(
-                          //     item._id,
-                          //     item.date,
-                          //     item.title,
-                          //     item.content,
-                          //     item.img
-                          //   ));
-                          // }),
-                        err => this._logger.log(err),
-                        () => this._logger.log('Data Retrieved From Server'));
+  	return this.http.get(this.baseAPI+'s')
+                    .map(res => { return res.json(); });
   }
 
   save(post){

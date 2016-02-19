@@ -253,9 +253,143 @@ body{
       }
     }
 
+    // ------------------------------
+    // management page
+    // ------------------------------
+    .tools{
+      .section{
+        h3{
+          text-align: center;
+          font-size: 1.6rem;
+          color: #2F2F2F;
+        }
+        h5{
+          text-align: center;
+          font-size: 1.2rem;
+          color: #2F2F2F;
+        }
+      }
+      .thumbnail{
+        border-radius: 150px;
+        img{
+          width: 80px;
+          height: 80px;
+          border-radius: 150px;
+        }
+      }
+      .tool-title{
+        .lead{
+          font-family: "Roboto",sans-serif;
+          font-size: 1.8em;
+          padding: 0 0.7em 0.7em 0.7em;
+          color: #2F2F2F;
+        }
+        i{
+          font-size: 1.6rem;
+        }
+      }
+      .tool-content{
+        .subheader{
+          font-family: "Roboto",sans-serif;
+          font-size: 1em;
+        }
+      }
+
+      .tool-detail{
+        padding-bottom: 1em;
+        span{
+          display: block;
+          font-size: 0.9em;
+          color: #9E9E9E;
+          background: none;
+        }
+      }
+    }
+
+    // ------------------------------
+    // post management page
+    // ------------------------------
+    .post-management{
+
+      .event {
+        padding: 0.5em;
+        display: table;
+        border-bottom: 2px solid #eee;
+      }
+
+      .event-date {
+        width: 6rem;
+        margin: 0 auto 1rem;
+        display: table-cell;
+        width: auto;
+
+        .event-month {
+          margin: 0;
+          background: #eee;
+          padding: 0.5rem 2rem;
+          text-align: center;
+        }
+
+        .event-day {
+          margin: 0;
+          border: 1px solid #eee;
+          padding: 0 2rem;
+          text-align: center;
+          font-size: 2rem;
+        }
+      }
+
+      .event-desc {
+        padding: 0 0 0 1rem;
+        text-align: left;
+        display: table-cell;
+        vertical-align: top;
+
+        .event-desc-header {
+          margin: 0 0 0.5rem 0;
+          padding: 0;
+        }
+
+        .event-desc-detail {
+          margin: 0 0 0.25rem;
+          padding: 0;
+        }
+
+        .event-desc-time {
+          color: solid #eee;
+          font-weight: 200;
+          font-size: 0.8rem;
+        }
+
+        .rsvp.button {
+          padding-top: 0.5rem;
+          padding-bottom: 0.5rem;
+          margin: 0;
+        }
+      }
+
+      .section{
+
+        h3{
+          text-align: center;
+          font-size: 1.6rem;
+          color: #2F2F2F;
+        }
+        h5{
+          text-align: center;
+          font-size: 1.2rem;
+          color: #2F2F2F;
+        }
+      }
+      .action{
+        padding-left: 1em;
+      }
+    }
+
+
   // ------------------------------
   footer{
-    display: none;
+
   }
 
 } /* Define mobile styles */

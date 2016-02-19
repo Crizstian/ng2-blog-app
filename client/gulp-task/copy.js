@@ -36,8 +36,9 @@ gulp.task('copy:dist:vendor', () => {
     './bower_components/jquery/dist/*min.js': `${ PATHS.DIST_PATH }/vendor/js`,
     './bower_components/what-input/*min.js': `${ PATHS.DIST_PATH }/vendor/js`,
     './bower_components/mdi/css/*min.css': `${ PATHS.DIST_PATH }/vendor/css`,
-    './bower_components/mdi/fonts/*': `${ PATHS.DIST_PATH }/vendor/fonts`
-
+    './bower_components/mdi/fonts/*': `${ PATHS.DIST_PATH }/vendor/fonts`,
+    './node_modules/quill/dist/*.css': `${ PATHS.DIST_PATH }/vendor/css`,
+    './node_modules/quill/dist/*.js': `${ PATHS.DIST_PATH }/vendor/js`
   });
 });
 

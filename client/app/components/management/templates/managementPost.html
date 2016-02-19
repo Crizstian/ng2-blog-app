@@ -1,0 +1,49 @@
+<br>
+  <div class="post-management">
+
+    <div class="row column">
+      <div class="callout">
+        <div class="section">
+          <h3><i class="mdi mdi-factory"></i> Post admin section</h3>
+          <h5><i class="mdi mdi-account"></i> User: Cristian Ramirez</h5>
+          <h5>
+            <a class="button small hollow" [routerLink]="['/ManagementPostDetail',{id:0}]">Add new post <i class="mdi mdi-plus"></i></a>
+          </h5>
+        </div>
+      </div>
+    </div>
+
+    <div class="row column">
+      <div class="callout">
+
+        <div class="small-12 columns small-centered"  >
+          <article class="event" *ngFor="#post of getPosts">
+
+              <div class="event-date">
+                <p class="event-month">Sept</p>
+                <p class="event-day">18</p>
+              </div>
+
+              <div class="event-desc">
+                <h4 class="event-desc-header">{{post.title}}</h4>
+                <p class="event-desc-detail">
+                  <span class="event-desc-time">
+                    <i class="mdi mdi-account"></i>
+                    Last user: Cristian Ramirez
+                  </span>
+                </p>
+                <div class="row action">
+                  <a class="button hollow" (click)="openPost(post.title)"><i class="mdi mdi-settings"></i> Edit</a>
+                  <a class="button hollow" (click)="deletePost(post.title)"><i class="mdi mdi-delete"></i> Delete</a>
+                </div>
+              </div>
+
+            </article>
+
+
+
+        </div>
+      </div>
+    </div>
+
+</div>

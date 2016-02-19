@@ -1,26 +1,25 @@
 import {Component,ElementRef,
-        Inject,Input, OnInit}         from 'angular2/core';
-import {Router}               from 'angular2/router';
+        Inject,Input, OnInit} from 'angular2/core';
+import {Router,RouterLink}               from 'angular2/router';
 import {Observable}           from 'rxjs/Observable';
 import {Observer}             from 'rxjs/Observer';
 import {AppState}             from '../../logic/AppState';
 import {Action,AddPostAction,
         DeletePostAction}     from '../../logic/Actions';
-import {PostService}          from '../../services/PostService.service';
 import {Logger}               from '../../services/Logger.service';
-import {state}                from '../../logic/stateAndDispatcher';
+import {PostService}          from '../../services/PostService.service';
 
 declare var jQuery:any;
 declare var foundation:any;
 
 @Component({
-  selector   : 'app-articles',
-  templateUrl: 'app/components/articles/templates/articles.html'
+  selector   : 'app-management-post',
+  directives : [RouterLink],
+  templateUrl: 'app/components/management/templates/managementPost.html'
 })
-export class ArticlesCompnt implements OnInit{
+export class ManagementPostCompnt implements OnInit{
 
   constructor(
-              // @Inject(state) private state: Observable<AppState>,
               private _router: Router,
               private _postService:PostService,
               private _logger:Logger,
@@ -42,7 +41,11 @@ export class ArticlesCompnt implements OnInit{
 
   openPost(id:string){
     let route = id.replace(/\s/g,'-');
-    this._router.navigate( ['PostDetail', {id: route} ] );
+    this._router.navigate( ['ManagementPostDetail', {id: route} ] );
+  }
+
+  deletePost(id:string){
+    console.log('post deleted! '+id);
   }
 
 }
