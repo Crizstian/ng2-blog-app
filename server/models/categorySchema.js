@@ -1,7 +1,7 @@
 'use strict';
 const mongoose = require('mongoose');
 
-const categorySchema = {
+const categorySchema = new mongoose.Schema({
   title: {
     type: String,
     unique: true,
@@ -15,16 +15,28 @@ const categorySchema = {
     type: Date,
     default: Date.now
   }
-};
+});
 
-module.exports = new mongoose.Schema(categorySchema);
-module.exports.categorySchema = categorySchema;
+const Category = mongoose.model('Category',categorySchema,'categories');
 
-// module.exports.getCategories = function(callback,limit){
-//   cs.find(callback).limit(limit);
-// }
-//
-// module.exports.addCategory = function(category,callback){
-//   console.log(category);
-//   cs.create(category,callback);
-// }
+module.exports = Category;
+
+// Get Categories
+module.exports.getCategories = function(callback){
+	Category.find(callback).sort([['title', 'ascending']]);
+}
+
+// Add Category
+module.exports.addCategory = function(category, callback){
+	Category.create(category, callback);
+}
+
+// Get Single Category
+module.exports.getCategoryById = function(id, callback){
+	Category.find(id, callback);
+}
+
+// Update Category
+module.exports.updateCategory = function(query, update, options, callback){
+	Category.findOneAndUpdate(query, update, options, callback);
+}

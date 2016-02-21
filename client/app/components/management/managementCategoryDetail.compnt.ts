@@ -50,7 +50,7 @@ export class ManagementCategoryDetailCompnt {
       this._categoryService.get(this.id)
           .subscribe(
             category =>
-              this.category = new Category(category[0].title,category[0].description),
+              this.category = new Category(category[0].title,category[0].description,category[0].date,category[0]._id),
               err => this._logger.log('an error ocurred fetching category '+this.id));
     }
   }

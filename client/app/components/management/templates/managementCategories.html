@@ -4,7 +4,7 @@
     <div class="row column">
       <div class="callout">
         <div class="section">
-          <h3><i class="mdi mdi-factory"></i> Post admin section</h3>
+          <h3><i class="mdi mdi-factory"></i> Categories admin section</h3>
           <h5><i class="mdi mdi-account"></i> User: Cristian Ramirez</h5>
           <h5>
             <a class="button small hollow" [routerLink]="['/ManagementCategoryDetail',{id:0}]"><i class="mdi mdi-plus"></i> Add new category</a>
@@ -16,8 +16,6 @@
 
     <div class="row column">
       <div class="callout">
-
-        {{data}}
 
         <div class="small-12 columns small-centered"  >
           <article class="event" *ngFor="#category of getCategories">
@@ -31,8 +29,8 @@
                   </span>
                 </p>
                 <div class="row action">
-                  <a class="button small hollow" (click)="openCategory(category.title)"><i class="mdi mdi-settings"></i> Edit</a>
-                  <a class="button small hollow" (click)="deleteCategory(category.title)"><i class="mdi mdi-delete"></i> Delete</a>
+                  <a class="button small hollow" (click)="openCategory(category._id)"><i class="mdi mdi-settings"></i> Edit</a>
+                  <a class="button small hollow" (click)="deleteCategory(category._id)"><i class="mdi mdi-delete"></i> Delete</a>
                 </div>
               </div>
 

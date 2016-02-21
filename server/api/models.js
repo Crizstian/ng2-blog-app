@@ -9,7 +9,7 @@ module.exports = function(wagner) {
   });
 
   var post = mongoose.model('post', require('../models/postSchema'), 'posts');
-  var category = mongoose.model('category', require('../models/categorySchema'), 'categories');
+  var category = require('../models/categorySchema');
 
   var models = {
     Post: post,

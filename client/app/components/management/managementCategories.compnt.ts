@@ -1,6 +1,7 @@
 import {Component,ElementRef,
         Inject,Input, OnInit} from 'angular2/core';
 import {Router,RouterLink}    from 'angular2/router';
+import {Observable}           from 'rxjs/Observable';
 import {CategoryService}      from '../../services/Category.service';
 import {Logger}               from '../../services/Logger.service';
 import {Category}             from '../../models/category';
@@ -15,23 +16,13 @@ declare var foundation:any;
 })
 export class ManagementCategoriesCompnt{
 
-  data:any;
-
   constructor(
               private _router: Router,
               private _categoryService:CategoryService,
               private _logger:Logger,
               private _elementRef: ElementRef
-            ) {
-              this._categoryService.getTest()
-                  .subscribe(
-                    (data) => this.data = JSON.stringify(data),
-                    err => console.log(err),
-                    () => {
-                      console.log(this.data);
-                    }
-                  );
-            }
+            ) {}
+
 
   ngOnInit() {
     jQuery(this._elementRef.nativeElement).foundation();
@@ -39,7 +30,7 @@ export class ManagementCategoriesCompnt{
         .subscribe((data) =>
           data.forEach((item) => {
             this._categoryService.categories =
-              [...this._categoryService.categories, new Category(item.title,item.description)];
+              [...this._categoryService.categories, new Category(item.title,item.description,item.date,item._id)];
           }));
   }
 
@@ -48,8 +39,7 @@ export class ManagementCategoriesCompnt{
   }
 
   openCategory(id:string){
-    let route = id.replace(/\s/g,'-');
-    this._router.navigate( ['ManagementCategoryDetail', {id: route} ] );
+    this._router.navigate( ['ManagementCategoryDetail', {id: id} ] );
   }
 
   deleteCategory(id:string){
