@@ -2,15 +2,13 @@
 const mongoose = require('mongoose');
 
 const postSchema = {
-  _id: {
-    type: String
-  },
   title: {
     type: String,
     required: true
   },
-  date: {
+  created_at: {
     type: Date,
+    default: Date.now,
     required: true
   },
   content: {
@@ -23,4 +21,4 @@ const postSchema = {
 };
 
 module.exports = new mongoose.Schema(postSchema);
-module.exports.todoSchema = postSchema;
+module.exports.postSchema = postSchema;

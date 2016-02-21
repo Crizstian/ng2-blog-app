@@ -386,6 +386,29 @@ body{
       }
     }
 
+    // ------------------------------
+    // add-edit-post
+    // ------------------------------
+
+    .add-edit-post{
+      .section{
+
+        h3{
+          text-align: center;
+          font-size: 1.6rem;
+          color: #2F2F2F;
+        }
+        h5{
+          text-align: center;
+          font-size: 1.2rem;
+          color: #2F2F2F;
+        }
+      }
+      .action{
+        padding-top: 1em;
+      }
+    }
+
 
   // ------------------------------
   footer{

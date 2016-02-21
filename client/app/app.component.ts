@@ -13,6 +13,7 @@ import {ManagementCompnt}               from './components/management/management
 import {ManagementPostCompnt}           from './components/management/managementPost.compnt';
 import {ManagementPostDetailCompnt}     from './components/management/managementPostDetail.compnt';
 import {ManagementCategoriesCompnt}     from './components/management/managementCategories.compnt';
+import {ManagementCategoryDetailCompnt} from './components/management/managementCategoryDetail.compnt';
 import {ManagementResourcesCompnt}      from './components/management/managementResources.compnt';
 import {LoginCompnt}                    from './components/Login/login.compnt';
 import {UserCompnt}                     from './components/User/user.compnt';
@@ -21,6 +22,7 @@ import {ResourcesCompnt}                from './components/resources/resources.c
 import {ResourcesDetailCompnt}          from './components/resources/resourcesDetail.compnt';
 
 import {PostService}                    from './services/PostService.service';
+import {CategoryService}                from './services/Category.service';
 import {Logger}                         from './services/Logger.service';
 import {stateAndDispatcher}             from './logic/stateAndDispatcher';
 
@@ -50,7 +52,7 @@ declare var foundation:any;
                 </div>
               `,
   directives: [HeaderCompnt,RouterOutlet,FooterCompnt],
-  providers : [stateAndDispatcher,PostService,Logger]
+  providers : [stateAndDispatcher,PostService,CategoryService,Logger]
 })
 @RouteConfig([
   {path: '/',                      as: 'Home',                 component: HomeCompnt, useAsDefault: true},
@@ -63,6 +65,7 @@ declare var foundation:any;
   {path: '/management/post',       as: 'ManagementPost',       component: ManagementPostCompnt},
   {path: '/management/post/:id',   as: 'ManagementPostDetail', component: ManagementPostDetailCompnt},
   {path: '/management/categories', as: 'ManagementCategories', component: ManagementCategoriesCompnt},
+  {path: '/management/categories/:id', as: 'ManagementCategoryDetail', component: ManagementCategoryDetailCompnt},
   {path: '/management/resources',  as: 'ManagementResources',  component: ManagementResourcesCompnt},
   {path: '/login',                 as: 'Login',                component: LoginCompnt},
   {path: '/users',                 as: 'ManagementUsers',      component: UserCompnt},

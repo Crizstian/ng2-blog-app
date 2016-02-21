@@ -45,8 +45,6 @@ export class ManagementPostDetailCompnt {
         theme: 'snow'
       });
 
-
-
     let id:string = this._routeParams.get('id');
     if(id !== '0'){
       this._postService.get(id)
@@ -55,6 +53,10 @@ export class ManagementPostDetailCompnt {
             err  => this._logger.log(err),
             ()   => this._logger.log('post with id fetched: '+id));
     }
+  }
+
+  submitForm(){
+    console.log(JSON.stringify(this.fullEditor.getHTML()));
   }
 
 }

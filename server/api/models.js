@@ -8,11 +8,12 @@ module.exports = function(wagner) {
     return mongoose;
   });
 
-  var Post =
-    mongoose.model('post', require('../models/postSchema'), 'posts');
+  var post = mongoose.model('post', require('../models/postSchema'), 'posts');
+  var category = mongoose.model('category', require('../models/categorySchema'), 'categories');
 
   var models = {
-    Post: Post
+    Post: post,
+    Category: category
   };
 
   // To ensure DRY-ness, register factories in a loop
