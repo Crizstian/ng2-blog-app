@@ -37,9 +37,11 @@ export class PostDetailCompnt {
     let id = this._routeParams.get('id');
     this._postService.get(id)
         .subscribe(
-          data => this.post = data[0],
+          data => this.post = new Post(data[0].title,data[0].content,data[0].img,new Date(data[0].date),data[0]._id),
           err  => this._logger.log(err),
-          ()   => this._logger.log('post with id fetched: '+id)
+          ()   => {
+            this._logger.log('post with id fetched: '+id);
+          }
     );
   }
   gotoPosts() {

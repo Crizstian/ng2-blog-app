@@ -15,13 +15,13 @@
    <div class="row column">
       <div class="callout">
          <div class="small-12 columns small-centered"  >
-            <form>
+            <form novalidate>
                <div class="row">
                   <div class="large-2 columns">
                      <label class="inline">Article name</label>
                   </div>
                   <div class="large-10 columns">
-                     <input type="text" id="yourName" placeholder="Article name">
+                     <input type="text" id="title" [ngFormControl]="group.find('title')" [(ngModel)]="post.title" placeholder="Article name">
                   </div>
                </div>
                <div class="row collapse">
@@ -122,20 +122,16 @@
                        </span>
                     </div>
                     <div id="full-editor" class="editor ql-container ql-snow" style="border:2px solid #eee;">
-                       <pre><code>getHeroes() {
-                                return this._http.get('/api/heroes')
-                                   .map( response =&gt; response.json() );
-                           }
-                        </code></pre>
+
                     </div>
+
                  </div>
                </div>
 
                <div class="action">
                  <div class="button-group">
-                    <a class="hollow button" (click)="submitForm()">Submit</a>
-                    <a class="warning hollow button">Save Draft</a>
-                    <a class="alert hollow button">Cancel</a>
+                    <a *ngIf="id == 0" class="hollow button" (click)="submitForm()">Submit</a>
+                    <a *ngIf="id != 0" class="hollow button" (click)="updateForm()">Update</a>
                   </div>
                </div>
 

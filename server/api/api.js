@@ -13,7 +13,7 @@ module.exports = function(wagner) {
   }));
   api.use(cors());
 
-  api.use('/post',require('./route/postRoutes')(wagner));
+  api.use('/posts',require('./route/postRoutes')(wagner));
   api.use('/categories',require('./route/categoryRoutes')(wagner));
 
   api.use(handleOne);

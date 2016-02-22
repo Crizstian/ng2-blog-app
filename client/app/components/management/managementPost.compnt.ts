@@ -1,13 +1,10 @@
 import {Component,ElementRef,
         Inject,Input, OnInit} from 'angular2/core';
-import {Router,RouterLink}               from 'angular2/router';
+import {Router,RouterLink}    from 'angular2/router';
 import {Observable}           from 'rxjs/Observable';
-import {Observer}             from 'rxjs/Observer';
-import {AppState}             from '../../logic/AppState';
-import {Action,AddPostAction,
-        DeletePostAction}     from '../../logic/Actions';
+import {PostService}      from '../../services/PostService.service';
 import {Logger}               from '../../services/Logger.service';
-import {PostService}          from '../../services/PostService.service';
+import {Post}             from '../../models/Post';
 
 declare var jQuery:any;
 declare var foundation:any;
@@ -17,7 +14,10 @@ declare var foundation:any;
   directives : [RouterLink],
   templateUrl: 'app/components/management/templates/managementPost.html'
 })
-export class ManagementPostCompnt implements OnInit{
+export class ManagementPostCompnt{
+
+  month = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul",
+           "Aug", "Sep", "Oct", "Nov", "Dec"];
 
   constructor(
               private _router: Router,
@@ -26,26 +26,40 @@ export class ManagementPostCompnt implements OnInit{
               private _elementRef: ElementRef
             ) {}
 
+
   ngOnInit() {
     jQuery(this._elementRef.nativeElement).foundation();
+
     this._postService.getAll()
-        .subscribe(posts => this._postService.posts = posts,
-                   err => this._logger.log(err),
-                   () => this._logger.log('Data Retrieved From Server'));
+        .subscribe((data) => {
+          data.forEach((item) => {
+            let post = new Post(item.title,item.content);
+            post.img  = item.img;
+            post.date = new Date(item.created);
+            post._id  = item._id;
+            this._postService.posts =
+              [...this._postService.posts, post ];
+          })
+        },
+        err => this._logger.log(err),
+        () => this._logger.log('data fetched'));
+
   }
 
   get getPosts() {
-    // return this.state.map(s => {return s.posts});
     return this._postService.posts;
   }
 
   openPost(id:string){
-    let route = id.replace(/\s/g,'-');
-    this._router.navigate( ['ManagementPostDetail', {id: route} ] );
+    this._router.navigate( ['ManagementPostDetail', {id: id} ] );
   }
 
   deletePost(id:string){
-    console.log('post deleted! '+id);
+    this._postService.delete(id)
+        .subscribe(
+          data => this._logger.log(data.post),
+          err => this._logger.log('an error ocurred deleting '+id)
+        );
   }
 
 }

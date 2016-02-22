@@ -6,7 +6,7 @@ const postSchema = {
     type: String,
     required: true
   },
-  created_at: {
+  created: {
     type: Date,
     default: Date.now,
     required: true
@@ -20,5 +20,26 @@ const postSchema = {
   }
 };
 
-module.exports = new mongoose.Schema(postSchema);
-module.exports.postSchema = postSchema;
+const Post = mongoose.model('Post',postSchema,'posts');
+
+module.exports = Post;
+
+// Get Categories
+module.exports.getPosts = function(callback){
+	Post.find(callback).sort([['title', 'ascending']]);
+}
+
+// Add Post
+module.exports.addPost = function(post, callback){
+	Post.create(post, callback);
+}
+
+// Get Single Post
+module.exports.getPostById = function(id, callback){
+	Post.find(id, callback);
+}
+
+// Update Post
+module.exports.updatePost = function(query, update, options, callback){
+	Post.findOneAndUpdate(query, update, options, callback);
+}

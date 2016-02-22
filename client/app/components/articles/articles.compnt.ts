@@ -9,6 +9,7 @@ import {Action,AddPostAction,
 import {PostService}          from '../../services/PostService.service';
 import {Logger}               from '../../services/Logger.service';
 import {state}                from '../../logic/stateAndDispatcher';
+import {Post}                 from '../../models/Post';
 
 declare var jQuery:any;
 declare var foundation:any;
@@ -30,9 +31,18 @@ export class ArticlesCompnt implements OnInit{
   ngOnInit() {
     jQuery(this._elementRef.nativeElement).foundation();
     this._postService.getAll()
-        .subscribe(posts => this._postService.posts = posts,
-                   err => this._logger.log(err),
-                   () => this._logger.log('Data Retrieved From Server'));
+        .subscribe((data) => {
+          data.forEach((item) => {
+            let post = new Post(item.title,item.content);
+            post.img  = item.img;
+            post.date = new Date(item.created);
+            post._id  = item._id;
+            this._postService.posts =
+              [...this._postService.posts, post ];
+          })
+        },
+        err => this._logger.log(err),
+        () => this._logger.log('data fetched'));
   }
 
   get getPosts() {
@@ -41,8 +51,7 @@ export class ArticlesCompnt implements OnInit{
   }
 
   openPost(id:string){
-    let route = id.replace(/\s/g,'-');
-    this._router.navigate( ['PostDetail', {id: route} ] );
+    this._router.navigate( ['PostDetail', {id: id} ] );
   }
 
 }

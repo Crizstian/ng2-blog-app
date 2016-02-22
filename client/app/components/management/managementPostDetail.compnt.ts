@@ -1,6 +1,10 @@
 import {Component,ElementRef,
         Inject,Input}         from 'angular2/core';
-import {RouteParams, Router,RouterLink}  from 'angular2/router';
+import {RouteParams, Router,
+        RouterLink}           from 'angular2/router';
+import {FormBuilder,FORM_DIRECTIVES,
+        ControlGroup,Control,
+        Validators}           from 'angular2/common';
 import {Observable}           from 'rxjs/Observable';
 import {Observer}             from 'rxjs/Observer';
 import {AppState}             from '../../logic/AppState';
@@ -25,14 +29,28 @@ export class ManagementPostDetailCompnt {
 
   private fullEditor:any;
   post:Post;
+  id:string;
+  group: ControlGroup;
 
   constructor(
+              builder: FormBuilder,
               private _router: Router,
               private _routeParams:RouteParams,
               private _postService:PostService,
               private _logger:Logger,
               private _elementRef: ElementRef
-            ) {}
+            ) {
+              this.post = new Post('','');
+              this.post.img = '';
+              this.group = builder.group({
+                title: ['',
+                  Validators.compose([Validators.required, Validators.minLength(2)])
+                ],
+                content: ['',
+                  Validators.compose([Validators.required, Validators.minLength(4)])
+                ]
+              });
+            }
 
   ngOnInit() {
     jQuery(this._elementRef.nativeElement).foundation();
@@ -49,14 +67,42 @@ export class ManagementPostDetailCompnt {
     if(id !== '0'){
       this._postService.get(id)
           .subscribe(
-            data => this.post = data[0],
+            data => this.post = new Post(data[0].title,data[0].content,data[0].img,new Date(data[0].date),data[0]._id),
             err  => this._logger.log(err),
-            ()   => this._logger.log('post with id fetched: '+id));
+            ()   => {
+              this._logger.log('post with id fetched: '+this.post._id);
+              this.fullEditor.setHTML(`
+                <textarea rows="4" id="content">${this.post.content}</textarea>`);
+            });
     }
   }
 
   submitForm(){
-    console.log(JSON.stringify(this.fullEditor.getHTML()));
+    this.post.content = this.fullEditor.getText();
+    console.log(JSON.stringify(this.post));
+    this._postService.save(this.post)
+        .subscribe(
+          data => {},
+          err => this._logger.log('an error ocurred on adding' + JSON.stringify(err)),
+          () => {
+            this._logger.log('post added!');
+            this._router.navigate( ['ManagementPost'] );
+          }
+        );
+  }
+
+  updateForm(){
+    this.post.content = this.fullEditor.getText();
+    console.log(JSON.stringify(this.post));
+    this._postService.update(this.post)
+        .subscribe(
+          data => {},
+          err => this._logger.log('an error ocurred on adding' + JSON.stringify(err)),
+          () => {
+            this._logger.log('post added!');
+            this._router.navigate( ['ManagementPost'] );
+          }
+        );
   }
 
 }
