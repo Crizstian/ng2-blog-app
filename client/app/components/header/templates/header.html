@@ -1,63 +1,64 @@
-
-    <!-- off-canvas title bar for 'small' screen -->
-    <div class="title-bar" data-responsive-toggle="widemenu" data-hide-for="medium">
-      <div class="title-bar-left">
-        <button class="menu-icon" type="button" data-open="offCanvasLeft"></button>
-        <span class="title-bar-title" data-open="offCanvasLeft"> </span>
-      </div>
-      <div class="title-bar-right">
-        <span class="subheader">CRamirez | code & blog <i class="mdi mdi-tag-text-outline"></i></span>
-        <h5><small>Knowing is different & Doing is different</small></h5>
-      </div>
-    </div>
-
     <!-- off-canvas left menu -->
-    <div class="off-canvas position-left reveal-for-large" id="offCanvasLeft" data-off-canvas>
-      <h1 align="center" class="subheader"><i class="mdi mdi-desktop-mac"></i> cr | code & blog</h1>
-      <img src="../app/img/back3.jpg" alt="" />
+    <aside class="menu-canvas" >
       <ul class="vertical dropdown menu" data-dropdown-menu>
         <li>
           <a [routerLink]="['/Home']" data-close="offCanvasLeft">
-            <i class="mdi mdi-label-outline"></i> Home
+            <i class="mdi mdi-home"></i> Home
           </a>
         </li>
         <li>
           <a [routerLink]="['/Articles']" data-close="offCanvasLeft">
-            <i class="mdi mdi-label-outline"></i> Articles
+            <i class="mdi mdi-apps"></i> Articles
           </a>
         </li>
         <li>
           <a [routerLink]="['/Categories']" data-close="offCanvasLeft">
-            <i class="mdi mdi-label-outline"></i> Categories
+            <i class="mdi mdi-camera-iris"></i> Categories
           </a>
         </li>
         <li>
           <a [routerLink]="['/About']" data-close="offCanvasLeft">
-            <i class="mdi mdi-label-outline"></i> About Me
+            <i class="mdi mdi-clipboard-account"></i> About Me
           </a>
         </li>
         <li>
           <a [routerLink]="['/Contact']" data-close="offCanvasLeft">
-            <i class="mdi mdi-label-outline"></i> Contact
+            <i class="mdi mdi-contact-mail"></i> Contact
           </a>
         </li>
         <li>
           <a [routerLink]="['/Management']" data-close="offCanvasLeft">
-            <i class="mdi mdi-label-outline"></i> Management
+            <i class="mdi mdi-settings"></i> Management
           </a>
         </li>
       </ul>
-      <span><i class="mdi mdi-source-fork"></i> Developed | Cristian Ramirez </span><br>
-      <span><i class="mdi mdi-stackoverflow"></i> Mean Stack | 2016</span>
-    </div>
 
-    <!-- "wider" top-bar menu for 'medium' and up -->
-    <div id="widemenu" class="top-bar">
-      <div class="title-bar-left">
-        <button class="menu-icon" type="button" data-open="offCanvasLeft"></button>
-        <span class="title-bar-title" data-open="offCanvasLeft">Menu </span>
+      <div class="row">
+        <div class="small-12 small-centered columns">
+          <div class="info">
+            <hr>
+          </div>
+        </div>
       </div>
-      <div class="title-bar-right">
-        <span class="subheader">cr | code & blog <i class="mdi mdi-tag-text-outline"></i></span>
+
+      <div class="row">
+        <div class="small-12">
+          <div class="info">
+            <div class="small-8 column">
+              <div class="row">
+                <span style="font-weight:bold;">Log Out</span>
+              </div>
+              <div class="row">
+                <span>Cristian Ramirez</span>
+              </div>
+            </div>
+            <div class="small-4 column">
+              <div class="sidebar-img">
+                <img src="https://scontent-yyz1-1.xx.fbcdn.net/hphotos-xta1/v/t1.0-9/12391401_10205352774164365_8260866082331820551_n.jpg?oh=adf2b96d511b59368adfeac14203c9a9&oe=575B1354">
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
+
+    </aside>

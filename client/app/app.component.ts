@@ -32,24 +32,43 @@ declare var foundation:any;
 @Component({
   selector   : 'my-app',
   template   : `
-                <div class="off-canvas-wrapper">
-                  <div class="off-canvas-wrapper-inner" data-off-canvas-wrapper>
+              <div class="off-canvas-wrapper">
+                <div class="off-canvas-wrapper-inner" data-off-canvas-wrapper>
+
+                  <div class="title-bar" data-responsive-toggle="widemenu" data-sticky-container>
+
+                    <div class="sticky" data-sticky>
+                      <div class="title-bar-left">
+                        <button class="menu-icon" type="button" data-open="offCanvasLeft"></button>
+                        <span class="title-bar-title" data-open="offCanvasLeft"> </span>
+                      </div>
+                      <div class="title-bar-right">
+                        <span class="subheader">CRamirez | code & blog <i class="mdi mdi-tag-text-outline"></i></span>
+                        <h5><small>Knowing is different & Doing is different</small></h5>
+                      </div>
+                    </div>
+
+                  </div>
+
+                  <div class="off-canvas position-left" id="offCanvasLeft" data-off-canvas>
 
                     <!-- header goes here -->
                     <app-header></app-header>
 
-                    <!-- original content goes in this container -->
-                    <div class="off-canvas-content" data-off-canvas-content>
-                      <div class="row column data-oulet">
-                        <router-outlet></router-outlet>
-                      </div>
+                  </div>
+                  
+                  <div class="off-canvas-content" data-off-canvas-content>
+
+                    <div class="row data-oulet">
+                      <router-outlet></router-outlet>
                     </div>
 
                     <!-- footer goes here -->
                     <app-footer></app-footer>
-                  <!-- close wrapper, no more content after this -->
+
                   </div>
                 </div>
+              </div>
               `,
   directives: [HeaderCompnt,RouterOutlet,FooterCompnt],
   providers : [stateAndDispatcher,PostService,CategoryService,Logger]

@@ -8,7 +8,10 @@ const isProduction = false;
 gulp.task('sass', () => {
   var minifyCss = $.if(isProduction, $.minifyCss());
 
-  return gulp.src('app/**/*.scss')
+  return gulp.src([
+    'bower_components/foundation-sites/scss/',
+    'app/**/*.scss'
+  ])
     .pipe($.sass({
       includePaths: PATHS.SASS,
       outputStyle: (isProduction ? 'compressed' : 'nested'),

@@ -23,7 +23,7 @@ export class ManagementCompnt implements OnInit{
       user: 'Cristian Ramirez',
       date: '18/feb/2016',
       num: 125,
-      img: '',
+      img: '../app/img/back1.jpg',
       link: 'ManagementPost'
     },
     {
@@ -31,7 +31,7 @@ export class ManagementCompnt implements OnInit{
       user: 'Cristian Ramirez',
       date: '18/feb/2016',
       num: 10,
-      img: '',
+      img: '../app/img/back1.jpg',
       link: 'ManagementCategories'
     },
     {
@@ -39,7 +39,7 @@ export class ManagementCompnt implements OnInit{
       user: 'Cristian Ramirez',
       date: '18/feb/2016',
       num: 1,
-      img: '',
+      img: '../app/img/back1.jpg',
       link: 'ManagementUsers'
     },
     {
@@ -47,7 +47,7 @@ export class ManagementCompnt implements OnInit{
       user: 'Cristian Ramirez',
       date: '18/feb/2016',
       num: 15,
-      img: '',
+      img: '../app/img/back1.jpg',
       link: 'ManagementResources'
     }
   ];

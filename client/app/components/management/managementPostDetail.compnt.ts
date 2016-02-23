@@ -27,10 +27,10 @@ declare var basicEditor:any;
 })
 export class ManagementPostDetailCompnt {
 
-  private fullEditor:any;
   post:Post;
   id:string;
   group: ControlGroup;
+  private fullEditor:any;
 
   constructor(
               builder: FormBuilder,
@@ -63,11 +63,11 @@ export class ManagementPostDetailCompnt {
         theme: 'snow'
       });
 
-    let id:string = this._routeParams.get('id');
-    if(id !== '0'){
-      this._postService.get(id)
+     this.id = this._routeParams.get('id');
+    if(this.id !== '0'){
+      this._postService.get(this.id)
           .subscribe(
-            data => this.post = new Post(data[0].title,data[0].content,data[0].img,new Date(data[0].date),data[0]._id),
+            data => this.post = new Post(data[0].title,data[0].content,data[0].img,new Date(data[0].created),data[0]._id),
             err  => this._logger.log(err),
             ()   => {
               this._logger.log('post with id fetched: '+this.post._id);

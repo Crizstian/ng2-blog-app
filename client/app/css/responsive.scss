@@ -1,46 +1,71 @@
 body{
   font-family: "Roboto",sans-serif;
-
 }
 .js-off-canvas-exit{
-  background: hsla(0,0%,100%,.0);
+  background: none;
 }
 // Small screens
 @media only screen {
 
-  .data-oulet{
+  .off-canvas-wrapper-inner{
     border: 0px solid green;
-    background: #E5E5E5;
+
+  }
+  .off-canvas-content{
+    height: 88vh;
+    overflow-y: scroll;
+  }
+  .off-canvas.position-left{
+    left: -320px;
+    width: 320px;
+    height: 100vh;
+    overflow-y: scroll;
+    background-image: linear-gradient(to bottom,#7099C9,#0C1C2D);
+    .menu-canvas{
+      ul{
+        padding: 2.5em 1em;
+        li{
+          padding: 0.5em;
+          a{
+            font-weight: bold;
+            font-size: 1.1em;
+            color: white;
+            i{
+              padding-right: 1.5em;
+              font-weight: 100;
+              font-size: 1.3em;
+            }
+          }
+        }
+      }
+      .info{
+        padding-left: 1.5em;
+        bottom: 0px;
+        span{
+          color: white;
+        }
+        .sidebar-img{
+          position: relative;
+          padding-top: -0.5em;
+          padding-right: -1.5em;
+          img{
+            border: 2px solid white;
+            width: 46px;
+            height: 46px;
+            border-radius: 150px;
+            box-shadow: 0 0 8px rgba(0, 0, 0, .8);
+          }
+        }
+      }
+    }
   }
 
+  .is-open-left{
+    transform: translateX(320px);
+  }
   // ------------------------------
   //  Menu OffCanvas
   // ------------------------------
-
-  #offCanvasLeft{
-    background: #1E1E1E;
-    height: 100vh;
-    h1{
-      font-size: 1.2rem;
-    }
-    li{
-      padding: 0.5em;
-      border-bottom: 1px solid #484848;
-      a{
-        color: white;
-        font-size: 1rem;
-      }
-      &:hover{
-        background: #343434;
-      }
-    }
-    span{
-      margin-top: 2em;
-      padding: 1.5em;
-      font-size: 0.9rem;
-      color: #484848;
-    }
-  }
 
   .title-bar{
     z-index: 2;
@@ -48,10 +73,10 @@ body{
     background: #1E1E1E;
     box-shadow: 0 0 8px rgba(0, 0, 0, .8);
     .title-bar-left{
-      margin-top: 18px;
-      margin-left: 10px;
+      padding-top: 18px;
+      padding-left: 10px;
       button{
-        margin-left: 12px;
+        padding-left: 12px;
       }
       .title-bar-title{
        color: white;
@@ -59,8 +84,8 @@ body{
       }
     }
     .title-bar-right{
-      margin-top: 12px;
-      margin-right: 40px;
+      padding-top: 12px;
+      padding-right: 20px;
       span{
         color: white;
         font-size: 1.2rem;
@@ -78,7 +103,7 @@ body{
     width: 100%;
     height: 91vh;
     padding: 0;
-    margin:0;
+    padding:0;
     img{
       width: 100%;
       height: 100%;
@@ -107,6 +132,7 @@ body{
   // ------------------------------
   .contents{
     .posts{
+      padding: 1em;
       .article-title{
         .lead{
           font-family: "Roboto",sans-serif;
@@ -133,7 +159,7 @@ body{
       }
       .article-img{
         position: relative;
-        margin-top: -1em;
+        padding-top: -1em;
         padding: 0 0 1.5em 6.5em;
         img{
           width: 120px;
@@ -151,7 +177,6 @@ body{
 
     .post-detail{
       .blog-post{
-
         .blog-title{
           text-align: center;
           padding: 0.6em;
@@ -211,7 +236,7 @@ body{
       .sidebar{
         .sidebar-img{
           position: relative;
-          margin-top: -1em;
+          padding-top: -1em;
           padding: 0 0 1.5em 6.5em;
           img{
             width: 120px;
@@ -257,6 +282,7 @@ body{
     // management page
     // ------------------------------
     .tools{
+
       .section{
         h3{
           text-align: center;
@@ -281,7 +307,7 @@ body{
         .lead{
           font-family: "Roboto",sans-serif;
           font-size: 1.8em;
-          padding: 0 0.7em 0.7em 0.7em;
+          padding: 0 0.7em;
           color: #2F2F2F;
         }
         i{
@@ -296,7 +322,7 @@ body{
       }
 
       .tool-detail{
-        padding-bottom: 1em;
+        padding: 0 1em 1em 0;
         span{
           display: block;
           font-size: 0.9em;
@@ -319,19 +345,19 @@ body{
 
       .event-date {
         width: 6rem;
-        margin: 0 auto 1rem;
+        padding: 0 auto 1rem;
         display: table-cell;
         width: auto;
 
         .event-month {
-          margin: 0;
+          padding: 0;
           background: #eee;
           padding: 0.5rem 2rem;
           text-align: center;
         }
 
         .event-day {
-          margin: 0;
+          padding: 0;
           border: 1px solid #eee;
           padding: 0 2rem;
           text-align: center;
@@ -346,12 +372,12 @@ body{
         vertical-align: top;
 
         .event-desc-header {
-          margin: 0 0 0.5rem 0;
+          padding: 0 0 0.5rem 0;
           padding: 0;
         }
 
         .event-desc-detail {
-          margin: 0 0 0.25rem;
+          padding: 0 0 0.25rem;
           padding: 0;
         }
 
@@ -364,7 +390,7 @@ body{
         .rsvp.button {
           padding-top: 0.5rem;
           padding-bottom: 0.5rem;
-          margin: 0;
+          padding: 0;
         }
       }
 
@@ -445,7 +471,7 @@ body{
       }
     }
     span{
-      margin-top: 2em;
+      padding-top: 2em;
       padding: 1.5em;
       font-size: 0.9rem;
       color: #484848;
@@ -461,12 +487,12 @@ body{
       font-size: 1.1rem;
     }
     .title-bar-left{
-      margin-top: 8px;
-      margin-left: 10px;
+      padding-top: 8px;
+      padding-left: 10px;
     }
     .title-bar-right{
-      margin-top: 8px;
-      margin-right: 10px;
+      padding-top: 8px;
+      padding-right: 10px;
     }
   }
 
@@ -475,7 +501,7 @@ body{
     width: 100%;
     height: 40vh;
     padding: 0;
-    margin:0;
+    padding:0;
     img{
       width: 100%;
       height: 100%;
@@ -507,7 +533,7 @@ body{
     .tabular{
       position: absolute;
       width: 100%;
-      margin: 0 0 0 -10px;
+      padding: 0 0 0 -10px;
       padding: 0;
       bottom: 0px;
       z-index: 10;
@@ -547,7 +573,7 @@ body{
       }
     }
     span{
-      margin-top: 2em;
+      padding-top: 2em;
       padding: 1.5em;
       font-size: 0.9rem;
       color: #484848;
@@ -563,12 +589,12 @@ body{
       font-size: 1.1rem;
     }
     .title-bar-left{
-      margin-top: 8px;
-      margin-left: 10px;
+      padding-top: 8px;
+      padding-left: 10px;
     }
     .title-bar-right{
-      margin-top: 8px;
-      margin-right: 10px;
+      padding-top: 8px;
+      padding-right: 10px;
     }
   }
 
@@ -577,7 +603,7 @@ body{
     width: 100%;
     height: 40vh;
     padding: 0;
-    margin:0;
+    padding:0;
     img{
       width: 100%;
       height: 100%;
@@ -609,7 +635,7 @@ body{
     .tabular{
       position: absolute;
       width: 100%;
-      margin: 0 0 0 -10px;
+      padding: 0 0 0 -10px;
       padding: 0;
       bottom: 0px;
       z-index: 10;

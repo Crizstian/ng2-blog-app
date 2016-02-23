@@ -1,105 +1,109 @@
 <div class="post-detail">
   <br>
-  <div class="row">
+  <div class="row column">
 
-    <div class="medium-8 columns">
-      <div class="callout">
-        <div class="blog-post" *ngIf="post">
+    <div class="medium-8 column">
+      <div class="column">
+        <div class="callout">
+          <div class="blog-post" *ngIf="post">
 
-          <div class="blog-title">
-            <h3>{{post.title}} </h3>
-            <h5 class="author">
-              by <a href="#">Cristian Ramirez</a> - 3/6/2015
-            </h5>
-            <span class="label">Angular 2</span>
-            <span class="label">JavaScript</span>
-            <span class="label">Redux</span>
-          </div>
+            <div class="blog-title">
+              <h3>{{post.title}} </h3>
+              <h5 class="author">
+                by <a href="#">Cristian Ramirez</a> - 3/6/2015
+              </h5>
+              <span class="label">Angular 2</span>
+              <span class="label">JavaScript</span>
+              <span class="label">Redux</span>
+            </div>
 
-          <div class="blog-img">
-            <img class="thumbnail" src="{{post.img}}">
-          </div>
+            <div class="blog-img">
+              <img class="thumbnail" src="{{post.img}}">
+            </div>
 
-          <div class="blog-content">
-            <p class="title">
-              {{post.title}}
-            </p>
-            <p class="content">
-              {{post.content}}
-            </p>
-          </div>
-
-          <div class="blog-sign">
-            <div class="row column">
-              <hr>
-              <p class="sign">
-                Thanks for reading! If you like this page <span>share it with a friend.</span>
+            <div class="blog-content">
+              <p class="title">
+                {{post.title}}
               </p>
-              <div class="social">
-                <span class="label"><i class="mdi mdi-facebook"></i></span>
-                <span class="label"><i class="mdi mdi-twitter"></i></span>
-                <span class="label"><i class="mdi mdi-linkedin"></i></span>
-                <span class="label"><i class="mdi mdi-google-plus"></i></span>
-                <span class="label"><i class="mdi mdi-email-outline"></i></span>
+              <p class="content">
+                {{post.content}}
+              </p>
+            </div>
+
+            <div class="blog-sign">
+              <div class="row">
+                <hr>
+                <p class="sign">
+                  Thanks for reading! If you like this page <span>share it with a friend.</span>
+                </p>
+                <div class="social">
+                  <span class="label"><i class="mdi mdi-facebook"></i></span>
+                  <span class="label"><i class="mdi mdi-twitter"></i></span>
+                  <span class="label"><i class="mdi mdi-linkedin"></i></span>
+                  <span class="label"><i class="mdi mdi-google-plus"></i></span>
+                  <span class="label"><i class="mdi mdi-email-outline"></i></span>
+                </div>
               </div>
             </div>
+
+
+          </div>
+
+          <div class="disqus">
           </div>
 
 
-        </div>
+          <div *ngIf="!post">
+            <h3>Post's Not Found 404 || Under Construction</h3>
+          </div>
 
-        <div class="disqus">
-        </div>
-
-
-        <div *ngIf="!post">
-          <h3>Post's Not Found 404 || Under Construction</h3>
         </div>
 
       </div>
-
     </div>
 
-    <div class="medium-4 columns">
-      <div class="row column">
-        <div class="callout sidebar">
-          <br>
-          <div class="sidebar-img">
-            <img src="https://scontent-yyz1-1.xx.fbcdn.net/hphotos-xta1/v/t1.0-9/12391401_10205352774164365_8260866082331820551_n.jpg?oh=adf2b96d511b59368adfeac14203c9a9&oe=575B1354">
-          </div>
+    <div class="medium-4 column">
+      <div class="">
+        <div class="column">
+          <div class="callout sidebar">
+            <br>
+            <div class="sidebar-img">
+              <img src="https://scontent-yyz1-1.xx.fbcdn.net/hphotos-xta1/v/t1.0-9/12391401_10205352774164365_8260866082331820551_n.jpg?oh=adf2b96d511b59368adfeac14203c9a9&oe=575B1354">
+            </div>
 
-          <div class="sidebar-title">
-            <h5>Cristian Ramirez </h5>
-            <h5>Contact Me</h5>
-          </div>
+            <div class="sidebar-title">
+              <h5>Cristian Ramirez </h5>
+              <h5>Contact Me</h5>
+            </div>
 
-          <div class="social">
-            <a href="https://twitter.com/Cramirez_92" target="_blank">
-              <span class="label"><i class="mdi mdi-twitter"></i></span>
-            </a>
-            <a href="https://www.linkedin.com/in/cristian-ramirez-8982177a" target="_blank">
-              <span class="label"><i class="mdi mdi-linkedin"></i></span>
-            </a>
-            <a href="https://github.com/Crizstian" target="_blank">
-              <span class="label"><i class="mdi mdi-github-circle"></i></span>
-            </a>
-            <a href="mailto:cristiano.rosetti@gmail.com">
-              <span class="label"><i class="mdi mdi-email-outline"></i></span>
-            </a>
-          </div>
+            <div class="social">
+              <a href="https://twitter.com/Cramirez_92" target="_blank">
+                <span class="label"><i class="mdi mdi-twitter"></i></span>
+              </a>
+              <a href="https://www.linkedin.com/in/cristian-ramirez-8982177a" target="_blank">
+                <span class="label"><i class="mdi mdi-linkedin"></i></span>
+              </a>
+              <a href="https://github.com/Crizstian" target="_blank">
+                <span class="label"><i class="mdi mdi-github-circle"></i></span>
+              </a>
+              <a href="mailto:cristiano.rosetti@gmail.com">
+                <span class="label"><i class="mdi mdi-email-outline"></i></span>
+              </a>
+            </div>
 
-          <div class="row column">
-            <hr>
-          </div>
+            <div class="row">
+              <hr>
+            </div>
 
-          <div class="sidebar-content">
-            <p class="content">
-              Hey I'm Cristian Ramirez, a full stack web developer (and future mobile developer too) who loves building awesome things, based in Morelia, Mexico.
-              This blog is my way of sharing my knowledege to JavaScript (MEAN Stack/Ionic/NativeScript) community!.<br>
-              <span>want to know me better</span>
-            </p>
-          </div>
+            <div class="sidebar-content">
+              <p class="content">
+                Hey I'm Cristian Ramirez, a full stack web developer (and future mobile developer too) who loves building awesome things, based in Morelia, Mexico.
+                This blog is my way of sharing my knowledege to JavaScript (MEAN Stack/Ionic/NativeScript) community!.<br>
+                <span>want to know me better</span>
+              </p>
+            </div>
 
+          </div>
         </div>
       </div>
     </div>
