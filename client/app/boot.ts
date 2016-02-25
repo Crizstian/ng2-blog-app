@@ -7,6 +7,7 @@ import {AppComponent}             from './app.component';
 import {enableProdMode,provide}   from 'angular2/core';
 import {LocationStrategy,
         HashLocationStrategy}     from 'angular2/router';
+import {stateAndDispatcher}       from './logic/newStateDispatcher';
 
 enableProdMode();
 bootstrap(AppComponent,
@@ -14,6 +15,7 @@ bootstrap(AppComponent,
     HTTP_PROVIDERS,
     ROUTER_PROVIDERS,
     provide(LocationStrategy,
-       {useClass: HashLocationStrategy})
+       {useClass: HashLocationStrategy}),
+    stateAndDispatcher
   ])
     .catch(err => console.error(err));

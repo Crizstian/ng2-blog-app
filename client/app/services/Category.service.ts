@@ -15,7 +15,8 @@ export class CategoryService{
   constructor(
       private http: Http,
       private _logger:Logger
-    ) {}
+    ) {
+    }
 
   getAll():Observable<any> {
   	return this.http.get(this.baseAPI)

@@ -15,8 +15,5 @@
     "bower_components",
     "dist",
     "gulp-task"
-  ],
-  "atom": {
-    "rewriteTsconfig": true
-  }
+  ]
 }

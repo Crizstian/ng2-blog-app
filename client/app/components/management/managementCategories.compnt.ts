@@ -2,6 +2,11 @@ import {Component,ElementRef,
         Inject,Input, OnInit} from 'angular2/core';
 import {Router,RouterLink}    from 'angular2/router';
 import {Observable}           from 'rxjs/Observable';
+import {Observer}             from 'rxjs/Observer';
+import {dispatcher,state}     from '../../logic/newStateDispatcher';
+import {AppState}             from '../../logic/AppState';
+import {Action,
+        AddCategoryAction}    from '../../logic/Actions';
 import {CategoryService}      from '../../services/Category.service';
 import {Logger}               from '../../services/Logger.service';
 import {Category}             from '../../models/category';
@@ -20,7 +25,9 @@ export class ManagementCategoriesCompnt{
               private _router: Router,
               private _categoryService:CategoryService,
               private _logger:Logger,
-              private _elementRef: ElementRef
+              private _elementRef: ElementRef,
+              @Inject(dispatcher) private _dispatcher: Observer<Action>,
+              @Inject(state) private _state: Observable<AppState>
             ) {}
 
 
@@ -28,14 +35,18 @@ export class ManagementCategoriesCompnt{
     jQuery(this._elementRef.nativeElement).foundation();
     this._categoryService.getAll()
         .subscribe((data) =>
-          data.forEach((item) => {
-            this._categoryService.categories =
-              [...this._categoryService.categories, new Category(item.title,item.description,item.date,item._id)];
-          }));
+          data.forEach((item) =>
+            this._dispatcher.next(new AddCategoryAction(
+              item.title,item.description,item.date,item._id
+            ))
+          ),
+          (err) => this._logger.log(err),
+          ()    => this._logger.log('Categories Data Fetched completed!'));
   }
 
   get getCategories() {
-    return this._categoryService.categories;
+    // this._state.subscribe(s => console.log("state: "+s));
+    return ['hello','world'];
   }
 
   openCategory(id:string){

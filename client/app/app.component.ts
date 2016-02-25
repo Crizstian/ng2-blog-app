@@ -1,4 +1,4 @@
-import {Component,ElementRef}           from 'angular2/core';
+import {Component,ElementRef,Inject}           from 'angular2/core';
 import {RouteConfig, ROUTER_DIRECTIVES,
         RouterOutlet  }                 from 'angular2/router';
 import {HeaderCompnt}                   from './components/header/header.compnt';
@@ -24,7 +24,12 @@ import {ResourcesDetailCompnt}          from './components/resources/resourcesDe
 import {PostService}                    from './services/PostService.service';
 import {CategoryService}                from './services/Category.service';
 import {Logger}                         from './services/Logger.service';
-import {stateAndDispatcher}             from './logic/stateAndDispatcher';
+
+import {state,dispatcher}               from './logic/newStateDispatcher';
+import {Observable}           from 'rxjs/Observable';
+import {Observer}             from 'rxjs/Observer';
+import {AppState}             from './logic/AppState';
+import {Action}               from './logic/Actions';
 
 declare var jQuery:any;
 declare var foundation:any;
@@ -56,7 +61,7 @@ declare var foundation:any;
                     <app-header></app-header>
 
                   </div>
-                  
+
                   <div class="off-canvas-content" data-off-canvas-content>
 
                     <div class="row data-oulet">
@@ -71,7 +76,7 @@ declare var foundation:any;
               </div>
               `,
   directives: [HeaderCompnt,RouterOutlet,FooterCompnt],
-  providers : [stateAndDispatcher,PostService,CategoryService,Logger]
+  providers : [PostService,CategoryService,Logger]
 })
 @RouteConfig([
   {path: '/',                      as: 'Home',                 component: HomeCompnt, useAsDefault: true},
@@ -89,11 +94,13 @@ declare var foundation:any;
   {path: '/login',                 as: 'Login',                component: LoginCompnt},
   {path: '/users',                 as: 'ManagementUsers',      component: UserCompnt},
   {path: '/users/user/:id',        as: 'UsersDetail',          component: UserDetailCompnt},
-  {path: '/resources',             as: 'Resources',  component: ResourcesCompnt},
+  {path: '/resources',             as: 'Resources',            component: ResourcesCompnt},
   {path: '/resources/r/:id',       as: 'ResourcesDetail',      component: ResourcesDetailCompnt}
   ])
   export class AppComponent{
-    constructor(private elementRef: ElementRef) {
+    constructor(private elementRef: ElementRef,
+      @Inject(dispatcher) private _dispatcher: Observer<Action>,
+      @Inject(state) private _state: Observable<AppState>){
           this.elementRef = elementRef;
     }
 

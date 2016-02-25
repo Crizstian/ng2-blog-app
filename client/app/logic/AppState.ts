@@ -1,6 +1,8 @@
 import {Post} from '../models/Post';
+import {Category} from '../models/category';
 
 export interface AppState {
-  posts: Post[];
+  post: Post[];
+  category:Category[];
   visibilityFilter:string;
 }

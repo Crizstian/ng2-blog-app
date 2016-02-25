@@ -3,7 +3,7 @@ import {Subject}                    from 'rxjs/Subject';
 import {Injectable}                 from 'angular2/core';
 import {AppState}                   from './AppState';
 import {Post}                       from '../models/Post';
-import {Action,AddPostAction,
+import {ActionPost,AddPostAction,
         DeletePostAction,
         SetVisibilityFilter}        from './Actions';
 import {Observable}                 from 'rxjs/Observable';
@@ -18,12 +18,12 @@ export const state      = new OpaqueToken("state");
 
 export const stateAndDispatcher = [
   provide(initState,  {useValue: {posts: [], visibilityFilter: 'started'}}),
-  provide(dispatcher, {useValue: new Subject<Action>(null)}),
+  provide(dispatcher, {useValue: new Subject<ActionPost>(null)}),
   provide(state,      {useFactory: stateFn, deps: [new Inject(initState), new Inject(dispatcher)]})
 ];
 
 //function that returns an Observable of the appState
- function stateFn(initState: AppState, actions: Observable<Action>): Observable<AppState> {
+ function stateFn(initState: AppState, actions: Observable<ActionPost>): Observable<AppState> {
 
   const combine = s => ({posts: s[0], visibilityFilter: s[1]});
   const appStateObs: Observable<AppState> = posts(initState.posts, actions).
