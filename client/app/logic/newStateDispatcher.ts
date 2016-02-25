@@ -36,14 +36,17 @@ function configDispatcher(drivers):Observable<Action>{
   return new Subject<Action>(null);
 }
 
-function configState(initState: AppState, actions:Observable<Action>): Observable<AppState> {
-  let appState:Observable<AppState> = new Subject();
+function configState(initState: AppState, actions:Observable<Action>,drivers:any): Observable<AppState> {
 
   const combine = s => ({post: s[0], category: s[1], visibilityFilter: s[2]});
-  Object.keys(drivers).forEach(key => {
-    appState.zip(drivers[key](initValue[key], actions));
-  });
-  appState = appState.map(combine);
+  // Object.keys(drivers).forEach(key => {
+  //   appState.zip();
+  // });
+  let appState:Observable<AppState> = drivers.post(initState.post,actions)
+  .zip(drivers.category(initState.category,actions)).map(combine);
+
+  console.log();
+
   return wrapIntoBehavior(initState, appState);
 }
 
@@ -59,5 +62,5 @@ export const stateAndDispatcher = [
   provide(initDriver, {useValue: drivers }),
   provide(initState,  {useValue: initValue }),
   provide(dispatcher, {useFactory: configDispatcher, deps: [new Inject(initDriver)]}),
-  provide(state,      {useFactory: configState, deps: [new Inject(initState), new Inject(dispatcher)]})
+  provide(state,      {useFactory: configState, deps: [new Inject(initState), new Inject(dispatcher), new Inject(initDriver)]})
 ];

@@ -6,7 +6,8 @@ import {Observer}             from 'rxjs/Observer';
 import {dispatcher,state}     from '../../logic/newStateDispatcher';
 import {AppState}             from '../../logic/AppState';
 import {Action,
-        AddCategoryAction}    from '../../logic/Actions';
+        AddCategoryAction,
+      DeleteCategoryAction}    from '../../logic/Actions';
 import {CategoryService}      from '../../services/Category.service';
 import {Logger}               from '../../services/Logger.service';
 import {Category}             from '../../models/category';
@@ -34,19 +35,19 @@ export class ManagementCategoriesCompnt{
   ngOnInit() {
     jQuery(this._elementRef.nativeElement).foundation();
     this._categoryService.getAll()
-        .subscribe((data) =>
+        .subscribe((data) =>{
           data.forEach((item) =>
             this._dispatcher.next(new AddCategoryAction(
-              item.title,item.description,item.date,item._id
+              item.title,item.description,item.created,item._id
             ))
-          ),
-          (err) => this._logger.log(err),
+          );},
+          (err) => console.log(err),
           ()    => this._logger.log('Categories Data Fetched completed!'));
   }
 
   get getCategories() {
-    // this._state.subscribe(s => console.log("state: "+s));
-    return ['hello','world'];
+
+    return this._state.map(s => s.category.map(item => {return item;}));
   }
 
   openCategory(id:string){
@@ -57,7 +58,8 @@ export class ManagementCategoriesCompnt{
     this._categoryService.delete(id)
         .subscribe(
           data => this._logger.log(data.category),
-          err => this._logger.log('an error ocurred deleting '+id)
+          err => this._logger.log('an error ocurred deleting '+id),
+          () => this._dispatcher.next(new DeleteCategoryAction(id))
         );
   }
 

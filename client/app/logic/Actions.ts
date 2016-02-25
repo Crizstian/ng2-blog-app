@@ -1,3 +1,5 @@
+import {Category} from '../models/category';
+
 export class AddPostAction {
   constructor(public _id?: string,
               public date?: string,
@@ -29,6 +31,10 @@ export class DeleteCategoryAction {
   constructor(public id: string){}
 }
 
-export type ActionCategory = AddCategoryAction|DeleteCategoryAction;
+export class UpdateCategoryAction {
+  constructor(public category:Category){}
+}
+
+export type ActionCategory = AddCategoryAction|DeleteCategoryAction|UpdateCategoryAction;
 
 export type Action =  ActionPost|ActionCategory;

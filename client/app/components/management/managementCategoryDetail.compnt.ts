@@ -9,6 +9,14 @@ import {CategoryService}      from '../../services/Category.service';
 import {Logger}               from '../../services/Logger.service';
 import {Category}             from '../../models/category';
 
+import {Observable}           from 'rxjs/Observable';
+import {Observer}             from 'rxjs/Observer';
+import {dispatcher,state}     from '../../logic/newStateDispatcher';
+import {AppState}             from '../../logic/AppState';
+import {Action,
+        AddCategoryAction,
+      UpdateCategoryAction}    from '../../logic/Actions';
+
 declare var jQuery:any;
 declare var foundation:any;
 
@@ -28,7 +36,9 @@ export class ManagementCategoryDetailCompnt {
     private _routeParams:RouteParams,
     private _categoryService:CategoryService,
     private _logger:Logger,
-    private _elementRef: ElementRef
+    private _elementRef: ElementRef,
+    @Inject(dispatcher) private _dispatcher: Observer<Action>,
+    @Inject(state) private _state: Observable<AppState>
   ) {
 
     this.category = new Category('','');
@@ -46,7 +56,7 @@ export class ManagementCategoryDetailCompnt {
   ngOnInit() {
     jQuery(this._elementRef.nativeElement).foundation();
     this.id = this._routeParams.get('id');
-    if(this.id !== '0'){
+    if(this.id != '0'){
       this._categoryService.get(this.id)
           .subscribe(
             category =>
@@ -58,18 +68,22 @@ export class ManagementCategoryDetailCompnt {
   submitForm(){
     this._categoryService.save(this.category)
         .subscribe(
-          data => {},
-          err => this._logger.log('an error ocurred on adding' + JSON.stringify(err)),
-          () => {
-          this._logger.log('category added!');
-          this._router.navigate( ['ManagementCategories'] );
+          (item) => this._dispatcher.next(new AddCategoryAction(
+                      item.title,item.description,item.created,item._id
+                    )),
+          (err)  => this._logger.log('an error ocurred on adding' + JSON.stringify(err)),
+          ()     => {
+            this._logger.log('category added!');
+            this._router.navigate( ['ManagementCategories'] );
         });
   }
 
   updateForm(){
     this._categoryService.update(this.category)
         .subscribe(
-          data => {},
+          (item) => this._dispatcher.next(new UpdateCategoryAction(
+                      item.title,item.description,item.created,item._id
+                    )),
           err => this._logger.log('an error ocurred on updating'),
           () => {
           this._logger.log('category updated!');
