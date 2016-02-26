@@ -82,7 +82,7 @@ export class ManagementCategoryDetailCompnt {
     this._categoryService.update(this.category)
         .subscribe(
           (item) => this._dispatcher.next(new UpdateCategoryAction(
-                      item.title,item.description,item.created,item._id
+                      new Category(item.title,item.description,item.created,item._id)
                     )),
           err => this._logger.log('an error ocurred on updating'),
           () => {

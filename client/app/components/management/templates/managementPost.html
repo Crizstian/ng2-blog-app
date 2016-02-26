@@ -18,11 +18,11 @@
       <div class="callout">
 
         <div class="small-12 columns small-centered"  >
-          <article class="event" *ngFor="#post of getPosts">
+          <article class="event" *ngFor="#post of getPosts | async">
 
               <div class="event-date">
-                <p class="event-month">{{month[post.date.getMonth()]}}</p>
-                <p class="event-day">{{post.date.getDate()}}</p>
+                <p class="event-month">{{month[post.created.getMonth()]}}</p>
+                <p class="event-day">{{post.created.getDate()}}</p>
               </div>
 
               <div class="event-desc">

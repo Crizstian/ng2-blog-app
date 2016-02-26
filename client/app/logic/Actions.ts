@@ -1,23 +1,29 @@
 import {Category} from '../models/category';
+import {Post}     from '../models/Post';
 
 export class AddPostAction {
-  constructor(public _id?: string,
-              public date?: string,
-              public title:string='',
-              public content:string='',
-              public img:string=''
-            ){}
+  constructor(
+    public title:string,
+    public content:string,
+    public img?:string,
+    public created?:Date,
+    public _id?:string
+  ){}
 }
 
 export class DeletePostAction {
   constructor(public id: string){}
 }
 
+export class UpdatePostAction {
+  constructor(public post:Post){}
+}
+
 export class SetVisibilityFilter {
   constructor(public filter: string){}
 }
 
-export type ActionPost = AddPostAction|SetVisibilityFilter|DeletePostAction;
+export type ActionPost = AddPostAction|UpdatePostAction|DeletePostAction;
 
 export class AddCategoryAction {
   constructor(public title:string,
