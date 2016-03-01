@@ -13,9 +13,7 @@ import {Observable}           from 'rxjs/Observable';
 import {Observer}             from 'rxjs/Observer';
 import {dispatcher,state}     from '../../logic/newStateDispatcher';
 import {AppState}             from '../../logic/AppState';
-import {Action,
-        AddPostAction,
-        UpdatePostAction}     from '../../logic/Actions';
+import {Action,}     from '../../logic/Actions';
 
 declare var jQuery:any;
 declare var foundation:any;
@@ -83,32 +81,28 @@ export class ManagementPostDetailCompnt {
 
   submitForm(){
     this.post.content = this.fullEditor.getText();
-    this._postService.save(this.post)
-        .subscribe(
-          (item) => this._dispatcher.next(new UpdatePostAction(
-                      new Post(item.title,item.content,item.img,item.created,item._id)
-                    )),
-          err => this._logger.log('an error ocurred on adding' + JSON.stringify(err)),
-          () => {
-            this._logger.log('post added!');
-            this._router.navigate( ['ManagementPost'] );
-          }
-        );
+    this._postService.save(this.post).subscribe(
+      (data) => {},
+      (err)  => {
+        this._logger.log('Data NOT SAVED Correctly!');
+      },
+      ()     => {
+        this._logger.log('Data Saved Correctly!');
+        this._router.navigate( ['ManagementPost'] );
+      });
   }
 
   updateForm(){
     this.post.content = this.fullEditor.getText();
-    this._postService.update(this.post)
-        .subscribe(
-          (item) => this._dispatcher.next(new UpdatePostAction(
-                      new Post(item.title,item.content,item.img,item.created,item._id)
-                    )),
-          err => this._logger.log('an error ocurred on adding' + JSON.stringify(err)),
-          () => {
-            this._logger.log('post updated!');
-            this._router.navigate( ['ManagementPost'] );
-          }
-        );
+    this._postService.update(this.post).subscribe(
+      (data) => {},
+      (err)  => {
+        this._logger.log('Data NOT UPDATED Correctly!');
+      },
+      ()     => {
+        this._logger.log('Data Updated Correctly!');
+        this._router.navigate( ['ManagementPost'] );
+      });
   }
 
 }

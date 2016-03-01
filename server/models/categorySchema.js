@@ -23,7 +23,7 @@ module.exports = Category;
 
 // Get Categories
 module.exports.getCategories = function(callback){
-	Category.find(callback).sort([['title', 'ascending']]);
+	Category.find(callback).sort([['created', 'descending']]);
 }
 
 // Add Category

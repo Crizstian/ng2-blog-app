@@ -26,7 +26,7 @@ module.exports = Post;
 
 // Get Categories
 module.exports.getPosts = function(callback){
-	Post.find(callback).sort([['title', 'ascending']]);
+	Post.find(callback).sort([['title', 'descending']]);
 }
 
 // Add Post

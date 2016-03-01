@@ -1,0 +1,47 @@
+<div *ngIf="type === 'articles'">
+
+    <div class="article-title">
+      <p class="lead">
+        {{post.title}}
+      </p>
+    </div>
+
+    <div class="article-content">
+      <p class="subheader">
+        {{post.content.substr(0,160)}} ...
+      </p>
+    </div>
+
+    <div class="article-img">
+      <!-- <img src="{{post.img}}" alt="image of a planet called Pegasi B"> -->
+    </div>
+
+    <div class="article-detail">
+      <span class="label"><i class="mdi mdi-calendar"></i> {{post.created.getYear()}}</span>
+      <span class="label"><i class="mdi mdi-account"></i> Cristian Ramirez</span>
+    </div>
+
+    <a class="button hollow expanded" (click)="read.emit(post._id)">Read More</a>
+
+</div>
+
+<div *ngIf="type === 'manageArticles'">
+  <div class="event-date">
+    <p class="event-month">{{month[post.created.getMonth()]}}</p>
+    <p class="event-day">{{post.created.getDate()}}</p>
+  </div>
+
+  <div class="event-desc">
+    <h4 class="event-desc-header">{{post.title}}</h4>
+    <p class="event-desc-detail">
+      <span class="event-desc-time">
+        <i class="mdi mdi-account"></i>
+        Author: Cristian Ramirez
+      </span>
+    </p>
+    <div class="row action">
+      <a class="button hollow" (click)="edit.emit(post._id)"><i class="mdi mdi-settings"></i> Edit</a>
+      <a class="button hollow" (click)="delete.emit(post._id)"><i class="mdi mdi-delete"></i> Delete</a>
+    </div>
+  </div>
+</div>

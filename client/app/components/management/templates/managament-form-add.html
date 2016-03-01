@@ -1,0 +1,53 @@
+<div class="add-edit-post">
+   <br>
+   <!-- Contact Details -->
+   <div class="row column">
+     <manage-head
+       [type]="'section-edit'"
+       [section]="'Add/Edit Section'"
+       [user]="'Cristian Ramirez'"
+       (redirect)="redirectLocation($event)">
+     </manage-head>
+   </div>
+   <div class="row column">
+      <div class="callout">
+         <div class="small-12 columns small-centered"  >
+            <form novalidate>
+               <div class="row">
+                  <div class="large-2 columns">
+                     <label class="inline">Section name</label>
+                  </div>
+                  <div class="large-10 columns">
+                     <input type="text" id="title" [ngFormControl]="group.find('title')" [(ngModel)]="management.title" placeholder="Section name">
+                  </div>
+               </div>
+               <div class="row">
+                  <div class="large-2 columns">
+                     <label class="inline">Section link</label>
+                  </div>
+                  <div class="large-10 columns">
+                     <input type="text" id="title" [ngFormControl]="group.find('link')" [(ngModel)]="management.link" placeholder="Section link">
+                  </div>
+               </div>
+               <!-- <div class="row">
+                  <div class="large-2 columns">
+                     <label class="inline">Section image</label>
+                  </div>
+                  <div class="large-10 columns">
+                     <input type="text" id="title" [ngFormControl]="group.find('title')" [(ngModel)]="category.title" placeholder="Article name">
+                  </div>
+               </div> -->
+               <div class="action">
+                 <div class="button-group">
+                    <a *ngIf="id == 0" class="hollow button" (click)="submitForm()">Submit</a>
+                    <a *ngIf="id != 0" class="hollow button" (click)="updateForm()">Update</a>
+                  </div>
+               </div>
+
+            </form>
+         </div>
+      </div>
+   </div>
+
+</div>
+<!-- End Contact Details -->

@@ -21,11 +21,11 @@
           <article class="event" *ngFor="#category of getCategories | async">
 
               <div class="event-desc">
-                <h4 class="event-desc-header">{{category.title}}</h4>
+                <h4 contenteditable="true" class="event-desc-header">{{category.title}}</h4>
                 <p class="event-desc-detail">
                   <span class="event-desc-time">
                     <i class="mdi mdi-account"></i>
-                    {{category.description}}
+                    <span contenteditable="true">{{category.description}}</span>
                   </span>
                 </p>
                 <div class="row action">

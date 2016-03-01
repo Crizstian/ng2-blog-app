@@ -6,6 +6,7 @@ import {Observable}                 from 'rxjs/Observable';
 import {BehaviorSubject}            from 'rxjs/subject/BehaviorSubject';
 import {posts}                      from './postReducer';
 import {categories}                 from './categoryReducer';
+import {managements}                from './managementReducer';
 
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/scan';
@@ -18,14 +19,27 @@ export const dispatcher = new OpaqueToken("dispatcher");
 export const state      = new OpaqueToken("state");
 
 const initValue:AppState = {
-  post : [],
-  category : [],
-  visibilityFilter: ''
+  post: {
+    isFetching:false,
+    didInvalidate:false,
+    items: []
+  },
+  category: {
+    isFetching:false,
+    didInvalidate:false,
+    items: []
+  },
+  management: {
+    isFetching:false,
+    didInvalidate:false,
+    items: []
+  }
 }
 
 const drivers = {
   post: posts,
-  category: categories
+  category: categories,
+  management: managements
 }
 
 function configDispatcher(drivers):Observable<Action>{
@@ -38,14 +52,21 @@ function configDispatcher(drivers):Observable<Action>{
 
 function configState(initState: AppState, actions:Observable<Action>,drivers:any): Observable<AppState> {
 
-  const combine = s => ({post: s[0], category: s[1], visibilityFilter: s[2]});
-  // Object.keys(drivers).forEach(key => {
-  //   appState.zip();
-  // });
-  let appState:Observable<AppState> = drivers.post(initState.post,actions)
-  .zip(drivers.category(initState.category,actions)).map(combine);
+  const combine = s => ({post: s[0], category: s[1], management: s[2]});
 
-  console.log();
+  let appState:Observable<AppState> = drivers.post(initState.post,actions)
+                                      .zip(drivers.category(initState.category,actions),
+                                           drivers.management(initState.management,actions))
+                                      .map(combine);
+
+  // let proxySources:any = [];
+  // Object.keys(drivers).forEach(key => {
+  //   proxySources.push(drivers[key](initState[key],actions));
+  // });
+  //
+  // let appState:Observable<AppState> = new Subject<Action>(null)
+  //                                     .zip(...proxySources)
+  //                                     .map(combine);
 
   return wrapIntoBehavior(initState, appState);
 }

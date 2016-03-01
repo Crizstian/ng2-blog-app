@@ -1,46 +1,91 @@
-import {Category} from '../models/category';
-import {Post}     from '../models/Post';
+import {Category}         from '../models/category';
+import {Post}             from '../models/Post';
+import {ManagementModel}  from '../models/management';
 
-export class AddPostAction {
-  constructor(
-    public title:string,
-    public content:string,
-    public img?:string,
-    public created?:Date,
-    public _id?:string
-  ){}
+import {PostService}      from '../services/PostService.service';
+import {CategoryService}  from '../services/Category.service';
+import {ManagementService} from '../services/Managament.service.compnt';
+import {Observable}                 from 'rxjs/Observable';
+
+// ============================================================================
+
+export const networkAction = {
+  REQUEST_ALL_DATA     : 'REQUEST_ALL_DATA',
+  REQUEST_SAVE_DATA    : 'REQUEST_SAVE_DATA',
+  REQUEST_DELETE_DATA  : 'REQUEST_DELETE_DATA',
+  REQUEST_UPDATE_DATA  : 'REQUEST_UPDATE_DATA',
+  REQUEST_GET_ONE_DATA : 'REQUEST_GET_ONE_DATA',
+  RECEIVE_DATA         : 'RECEIVE_DATA'
 }
 
-export class DeletePostAction {
-  constructor(public id: string){}
+export const stateAction = {
+  ADD_DATA    : 'ADD_DATA',
+  UPDATE_DATA : 'UPDATE_DATA',
+  DELETE_DATA : 'DELETE_DATA',
+  REQUEST_DATA: 'REQUEST_DATA',
+  RECEIVE_DATA: 'RECEIVE_DATA'
 }
 
-export class UpdatePostAction {
-  constructor(public post:Post){}
+// ============================================================================
+
+export module CategoryActions{
+
+  interface Data {
+    service?:Observable<any>;
+    type?:string;
+    category?:Category
+    id?:string;
+    json?:Array<any>;
+    err?: string
+  }
+
+  export class Action {
+    constructor(public action:Data){}
+  }
 }
 
-export class SetVisibilityFilter {
-  constructor(public filter: string){}
+type ActionCategory = CategoryActions.Action;
+
+// ============================================================================
+
+export module PostActions{
+
+  interface Data {
+    service?:Observable<any>;
+    type?:string;
+    post?:Post
+    id?:string;
+    json?:Array<any>;
+    err?: string
+  }
+
+  export class Action {
+    constructor(public action:Data){}
+  }
 }
 
-export type ActionPost = AddPostAction|UpdatePostAction|DeletePostAction;
+type ActionPost = PostActions.Action;
 
-export class AddCategoryAction {
-  constructor(public title:string,
-              public description:string,
-              public date?:Date,
-              public _id?:string
-            ){}
+// ============================================================================
+
+export module ManagementActions{
+
+  interface Data {
+    service?:Observable<any>;
+    type?:string;
+    post?:Post
+    id?:string;
+    json?:Array<any>;
+    err?: string
+  }
+
+  export class Action {
+    constructor(public action:Data){}
+  }
 }
 
-export class DeleteCategoryAction {
-  constructor(public id: string){}
-}
+type ActionManagement = ManagementActions.Action;
 
-export class UpdateCategoryAction {
-  constructor(public category:Category){}
-}
+// ============================================================================
 
-export type ActionCategory = AddCategoryAction|DeleteCategoryAction|UpdateCategoryAction;
-
-export type Action =  ActionPost|ActionCategory;
+export type Action =  ActionCategory|ActionPost|ActionManagement;

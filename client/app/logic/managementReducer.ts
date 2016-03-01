@@ -2,12 +2,12 @@ import {OpaqueToken,provide,Inject} from 'angular2/core';
 import {Subject}                    from 'rxjs/Subject';
 import {Injectable}                 from 'angular2/core';
 import {AppState,stateRedux}        from './AppState';
-import {Post}                   from '../models/post';
-import {Action,PostActions,networkAction,stateAction}       from './Actions';
+import {ManagementModel}                   from '../models/management';
+import {Action,ManagementActions,networkAction,stateAction}       from './Actions';
 import {Observable}                 from 'rxjs/Observable';
 
 
-export function posts(initState: stateRedux, actions: Observable<Action>): Observable<Object> {
+export function managements(initState: stateRedux, actions: Observable<Action>): Observable<Object> {
   //State is the accumulator && Action is the current value
   return actions.scan((state, action) => {
     let items = [];
@@ -18,7 +18,7 @@ export function posts(initState: stateRedux, actions: Observable<Action>): Obser
         return Object.assign({}, state, {
           isFetching: true,
           didInvalidate: false,
-          items: action.action.json.map(item => postReducer(item,'ADD_DATA'))
+          items: action.action.json.map(item => managementReducer(item,'ADD_DATA'))
         });
       // =============================
       case stateAction.RECEIVE_DATA:
@@ -47,7 +47,7 @@ export function posts(initState: stateRedux, actions: Observable<Action>): Obser
           return Object.assign({}, state, {
               isFetching: false,
               didInvalidate: false,
-              items: [...state.items, postReducer(action.action.json,stateAction.ADD_DATA)]
+              items: [...state.items, managementReducer(action.action.json,stateAction.ADD_DATA)]
             });
         // =============================
         case stateAction.UPDATE_DATA:
@@ -55,17 +55,17 @@ export function posts(initState: stateRedux, actions: Observable<Action>): Obser
               isFetching: false,
               didInvalidate: false,
               items: state.items.map(item => (item._id !== action.action.id) ?
-                item : postReducer(item,stateAction.UPDATE_DATA))
+                item : managementReducer(item,stateAction.UPDATE_DATA))
             });
 
     }
   }, initState);
 }
 
-function postReducer(item:any,type:string) {
+function managementReducer(item:any,type:string) {
   switch(type){
     case stateAction.ADD_DATA:
-      return new Post(item.title,item.content,item.img,new Date(item.created),item._id);
+      return new ManagementModel(item.title,item.link,item.created,item.num,item.img,item.user,item._id);
     // case stateAction.UPDATE_DATA:
 
   }

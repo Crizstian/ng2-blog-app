@@ -13,9 +13,7 @@ import {Observable}           from 'rxjs/Observable';
 import {Observer}             from 'rxjs/Observer';
 import {dispatcher,state}     from '../../logic/newStateDispatcher';
 import {AppState}             from '../../logic/AppState';
-import {Action,
-        AddCategoryAction,
-      UpdateCategoryAction}    from '../../logic/Actions';
+import {Action,CategoryActions,stateAction}    from '../../logic/Actions';
 
 declare var jQuery:any;
 declare var foundation:any;
@@ -66,29 +64,27 @@ export class ManagementCategoryDetailCompnt {
   }
 
   submitForm(){
-    this._categoryService.save(this.category)
-        .subscribe(
-          (item) => this._dispatcher.next(new AddCategoryAction(
-                      item.title,item.description,item.created,item._id
-                    )),
-          (err)  => this._logger.log('an error ocurred on adding' + JSON.stringify(err)),
-          ()     => {
-            this._logger.log('category added!');
-            this._router.navigate( ['ManagementCategories'] );
-        });
+    this._categoryService.save(this.category).subscribe(
+      (data) => {},
+      (err)  => {
+        this._logger.log('Data NOT SAVED Correctly!');
+      },
+      ()     => {
+        this._logger.log('Data Saved Correctly!');
+        this._router.navigate(['/ManagementCategories']);
+      });
   }
 
   updateForm(){
-    this._categoryService.update(this.category)
-        .subscribe(
-          (item) => this._dispatcher.next(new UpdateCategoryAction(
-                      new Category(item.title,item.description,item.created,item._id)
-                    )),
-          err => this._logger.log('an error ocurred on updating'),
-          () => {
-          this._logger.log('category updated!');
-          this._router.navigate( ['ManagementCategories'] );
-        });
+    this._categoryService.update(this.category).subscribe(
+      (data) => {},
+      (err)  => {
+        this._logger.log('Data NOT UPDATED Correctly!');
+      },
+      ()     => {
+        this._logger.log('Data Updated Correctly!');
+        this._router.navigate(['/ManagementCategories']);
+      });
   }
 
 }
