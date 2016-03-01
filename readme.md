@@ -4,25 +4,19 @@ Angular 2 starter with TypeScript RxJS Gulp4 Express(Server) and MongoDB
 
 ### Blog App Structure
 
-Consists of 5 principal view's and 1 one sub-view for users
+The Blog App is developed using the Redux Pattern Where the project it's not using any Redux library,
 
-- Home
+it's using RxJS Observables simulating the 3 principal characteristics:
 
-- Articles(Posts)
+- Single Source of Truth
 
-  - Sub View Article(Post)
+- State of the App is immutable
 
-- Categories
+- Changing the state its only with Pure Functions
 
-- About Me
+Elements to consider for understanding the code are: Dependency Injection, RxJS Observable, and Redux Pattern, ES6 etc...
 
-- Contact
-
-For Admin's it will consist of 3 view's
-
-- CRUD Operations for Articles
-
-- Login System for authentication
+To Run the blog App it's recommended to open the browser and shrink it to the minimum simulating an mobile screen, cause it is mobile first design pattern and its css is not completed for bigger screen's
 
 ### To run this repo
 
