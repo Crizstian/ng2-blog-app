@@ -11,8 +11,7 @@
 
     <div class="row ">
 
-        <div class="small-12 medium-8 medium-centered large-6 large-centered column" *ngFor="#tool of managementTools">
-
+        <div class="small-12 medium-8 medium-centered large-6 large-centered column" *ngFor="#tool of getManagements | async">
           <div class="callout">
             <div class="media-object">
               <div class="media-object-section">
@@ -33,12 +32,12 @@
 
                 <div class="tool-detail">
                   <span class="label"><i class="mdi mdi-rocket"></i> Number of  {{tool.title}}: {{tool.num}}</span>
-                  <span class="label"><i class="mdi mdi-calendar"></i> Last modification: {{tool.date}}</span>
+                  <!-- <span class="label"><i class="mdi mdi-calendar"></i> Last modification: {{tool.created}}</span> -->
                   <span class="label"><i class="mdi mdi-account"></i> Last user: {{tool.user}}</span>
                 </div>
 
                 <a class="button hollow" (click)="openSection(tool.link)"><i class="mdi mdi-settings"></i> Configure</a>
-                <a class="button hollow" (click)="deleteSection(tool.link)"><i class="mdi mdi-delete"></i> Delete</a>
+                <a class="button hollow" (click)="deleteSection(tool._id)"><i class="mdi mdi-delete"></i> Delete</a>
               </div>
             </div>
           </div>

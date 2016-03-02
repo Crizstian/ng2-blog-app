@@ -58,17 +58,29 @@ export class ManagementAddCompnt {
     console.log(this.id);
   }
 
-  redirectLocation(route:string, id:string = '0'){
-    console.log(route);
-    this._router.navigate([route]);
-  }
-
   submitForm(){
-
+    console.log(this.management);
+    this._managementService.save(this.management).subscribe(
+      (data) => {},
+      (err)  => {
+        this._logger.log('Data NOT SAVED Correctly!');
+      },
+      ()     => {
+        this._logger.log('Data Saved Correctly!');
+        this._router.navigate( ['/ManagementContainer'] );
+      });
   }
 
   updateForm(){
-
+    this._managementService.update(this.management).subscribe(
+      (data) => {},
+      (err)  => {
+        this._logger.log('Data NOT UPDATED Correctly!');
+      },
+      ()     => {
+        this._logger.log('Data Updated Correctly!');
+        this._router.navigate( ['/ManagementContainer'] );
+      });
   }
 
 }

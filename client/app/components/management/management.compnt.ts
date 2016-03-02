@@ -4,9 +4,11 @@ import {Router}               from 'angular2/router';
 import {Observable}           from 'rxjs/Observable';
 import {Observer}             from 'rxjs/Observer';
 import {AppState}             from '../../logic/AppState';
-import {Action}               from '../../logic/Actions';
 import {Logger}               from '../../services/Logger.service';
 import {ManagementHeader}     from './management-header.compnt';
+import {dispatcher,state}     from '../../logic/newStateDispatcher';
+import {ManagementService}    from '../../services/Managament.service.compnt';
+import {Action,ManagementActions,stateAction}    from '../../logic/Actions';
 
 declare var jQuery:any;
 declare var foundation:any;
@@ -18,59 +20,51 @@ declare var foundation:any;
 })
 export class ManagementCompnt implements OnInit{
 
-  managementTools:Object[] = [
-    {
-      title: 'Post',
-      user: 'Cristian Ramirez',
-      date: '18/feb/2016',
-      num: 125,
-      img: '../app/img/back1.jpg',
-      link: 'ManagementPost'
-    },
-    {
-      title: 'Categories',
-      user: 'Cristian Ramirez',
-      date: '18/feb/2016',
-      num: 10,
-      img: '../app/img/back1.jpg',
-      link: 'ManagementCategories'
-    },
-    {
-      title: 'Users',
-      user: 'Cristian Ramirez',
-      date: '18/feb/2016',
-      num: 1,
-      img: '../app/img/back1.jpg',
-      link: 'ManagementUsers'
-    },
-    {
-      title: 'Resources',
-      user: 'Cristian Ramirez',
-      date: '18/feb/2016',
-      num: 15,
-      img: '../app/img/back1.jpg',
-      link: 'ManagementResources'
-    }
-  ];
-
   constructor(
               private _router: Router,
+              private _managementService:ManagementService,
               private _logger:Logger,
-              private _elementRef: ElementRef
+              private _elementRef: ElementRef,
+              @Inject(dispatcher) private _dispatcher: Observer<Action>,
+              @Inject(state) private _state: Observable<AppState>
             ) {}
 
   ngOnInit() {
     jQuery(this._elementRef.nativeElement).foundation();
 
+    this._managementService.getAll().subscribe(
+      (data) => this._dispatcher.next(new ManagementActions.Action({
+        type: stateAction.REQUEST_DATA,
+        json: data
+      })),
+      (err)  => this._dispatcher.next(new ManagementActions.Action({
+        type: stateAction.RECEIVE_DATA,
+        err: err
+      })),
+      ()     => this._dispatcher.next(new ManagementActions.Action({
+        type: stateAction.RECEIVE_DATA
+      }))
+    );
   }
 
+  get getManagements() {
+    return this._state.map(s => s.management.items.map(item => {return item;}));
+  }
 
   openSection(id:string){
     this._router.navigate( [id] );
   }
 
   deleteSection(id:string){
-    console.log('section deleted! '+id);
+    this._managementService.delete(id).subscribe(
+      (data) => {
+        this._dispatcher.next(new ManagementActions.Action({
+          type: stateAction.DELETE_DATA,
+          id
+        }));
+      },
+      (err)  => this._logger.log('Data NOT DELETED Correctly!'),
+      ()     => this._logger.log('Data Deleted Correctly!'));
   }
 
 }

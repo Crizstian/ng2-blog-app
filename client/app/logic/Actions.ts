@@ -73,7 +73,7 @@ export module ManagementActions{
   interface Data {
     service?:Observable<any>;
     type?:string;
-    post?:Post
+    management?:ManagementModel
     id?:string;
     json?:Array<any>;
     err?: string

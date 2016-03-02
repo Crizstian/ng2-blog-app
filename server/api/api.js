@@ -15,6 +15,7 @@ module.exports = function(wagner) {
 
   api.use('/posts',require('./route/postRoutes')(wagner));
   api.use('/categories',require('./route/categoryRoutes')(wagner));
+  api.use('/management',require('./route/managementRoutes')(wagner));
 
   api.use(handleOne);
   return api;

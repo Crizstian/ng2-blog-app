@@ -26,17 +26,9 @@
                      <label class="inline">Section link</label>
                   </div>
                   <div class="large-10 columns">
-                     <input type="text" id="title" [ngFormControl]="group.find('link')" [(ngModel)]="management.link" placeholder="Section link">
+                     <input type="text" id="link" [ngFormControl]="group.find('link')" [(ngModel)]="management.link" placeholder="Section link">
                   </div>
                </div>
-               <!-- <div class="row">
-                  <div class="large-2 columns">
-                     <label class="inline">Section image</label>
-                  </div>
-                  <div class="large-10 columns">
-                     <input type="text" id="title" [ngFormControl]="group.find('title')" [(ngModel)]="category.title" placeholder="Article name">
-                  </div>
-               </div> -->
                <div class="action">
                  <div class="button-group">
                     <a *ngIf="id == 0" class="hollow button" (click)="submitForm()">Submit</a>

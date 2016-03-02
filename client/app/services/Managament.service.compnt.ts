@@ -21,6 +21,7 @@ export class ManagementService{
   }
 
   save(management:ManagementModel):Observable<any> {
+    console.log(management);
     return this.http.post(`${this.baseAPI}/add`, JSON.stringify(management))
                     .map(res => res.json());
   }

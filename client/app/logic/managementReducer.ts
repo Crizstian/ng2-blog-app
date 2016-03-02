@@ -65,7 +65,7 @@ export function managements(initState: stateRedux, actions: Observable<Action>):
 function managementReducer(item:any,type:string) {
   switch(type){
     case stateAction.ADD_DATA:
-      return new ManagementModel(item.title,item.link,item.created,item.num,item.img,item.user,item._id);
+      return new ManagementModel(item.title,item.link,new Date(item.created),item.num,item.img,item.user,item._id);
     // case stateAction.UPDATE_DATA:
 
   }
