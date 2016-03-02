@@ -14,13 +14,14 @@ import {Observer}             from 'rxjs/Observer';
 import {dispatcher,state}     from '../../logic/newStateDispatcher';
 import {AppState}             from '../../logic/AppState';
 import {Action,CategoryActions,stateAction}    from '../../logic/Actions';
+import {ManagementHeader}      from './management-header.compnt';
 
 declare var jQuery:any;
 declare var foundation:any;
 
 @Component({
   selector    : 'management-category-detail',
-  directives  : [RouterLink,FORM_DIRECTIVES],
+  directives  : [RouterLink,FORM_DIRECTIVES,ManagementHeader],
   templateUrl : 'app/components/management/templates/managementCategoriesDetail.html'
 })
 export class ManagementCategoryDetailCompnt {

@@ -1,6 +1,6 @@
 import {Component,ElementRef,
         Inject,Input, OnInit} from 'angular2/core';
-import {Router,RouterLink}    from 'angular2/router';
+import {Router}               from 'angular2/router';
 import {Observable}           from 'rxjs/Observable';
 import {Observer}             from 'rxjs/Observer';
 import {dispatcher,state}     from '../../logic/newStateDispatcher';
@@ -9,13 +9,14 @@ import {Action,CategoryActions,stateAction}    from '../../logic/Actions';
 import {CategoryService}      from '../../services/Category.service';
 import {Logger}               from '../../services/Logger.service';
 import {Category}             from '../../models/category';
+import {ManagementHeader}     from './management-header.compnt';
 
 declare var jQuery:any;
 declare var foundation:any;
 
 @Component({
   selector   : 'app-management-categories',
-  directives : [RouterLink],
+  directives : [ManagementHeader],
   templateUrl: 'app/components/management/templates/managementCategories.html'
 })
 export class ManagementCategoriesCompnt{

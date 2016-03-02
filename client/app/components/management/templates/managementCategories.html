@@ -2,16 +2,11 @@
   <div class="post-management">
 
     <div class="row column">
-      <div class="callout">
-        <div class="section">
-          <h3><i class="mdi mdi-factory"></i> Categories admin section</h3>
-          <h5><i class="mdi mdi-account"></i> User: Cristian Ramirez</h5>
-          <h5>
-            <a class="button small hollow" [routerLink]="['/ManagementCategoryDetail',{id:0}]"><i class="mdi mdi-plus"></i> Add new category</a>
-            <a class="button small hollow" [routerLink]="['/Management']">Back to management</a>
-          </h5>
-        </div>
-      </div>
+      <manage-head
+        [type]="'management-category'"
+        [section]="Category"
+        [user]="'Cristian Ramirez'">
+      </manage-head>
     </div>
 
     <div class="row column">

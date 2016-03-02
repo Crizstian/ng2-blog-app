@@ -2,6 +2,8 @@
 
 Angular 2 starter with TypeScript RxJS Gulp4 Express(Server) and MongoDB
 
+This repository is an example of how to build a Flux/Redux-like Angular 2 application using RxJs and Functional Reactive Programming.
+
 ### Blog App Structure
 
 The Blog App is developed using the Redux Pattern Where the project it's not using any Redux library,
@@ -22,6 +24,6 @@ To Run the blog App it's recommended to open the browser and shrink it to the mi
 
 - git clone the repo
 
-- cd to client folder and run gulp
+- cd to client folder and run gulp, server running in port 3000 // note for calling the server change the static ip for your ip this was made for testing the in real mobile devices :D
 
-- cd to server folder and run gulp
+- cd to server folder and run gulp, server running in port 8000

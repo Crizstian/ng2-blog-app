@@ -1,7 +1,8 @@
 import {Component,ElementRef,
         Inject,Input}         from 'angular2/core';
 import {RouteParams, Router}  from 'angular2/router';
-import {FormBuilder,FORM_DIRECTIVES,
+import {FormBuilder,
+        FORM_DIRECTIVES,
         ControlGroup,Control,
         Validators}           from 'angular2/common';
 import {ManagementService}    from '../../services/Managament.service.compnt';
@@ -12,10 +13,8 @@ import {Observable}           from 'rxjs/Observable';
 import {Observer}             from 'rxjs/Observer';
 import {dispatcher,state}     from '../../logic/newStateDispatcher';
 import {AppState}             from '../../logic/AppState';
-import {Action,
-        AddManagementAction,
-        UpdateManagementAction} from '../../logic/Actions';
-import {ManagementHeader}       from './management-header.compnt';
+import {Action}               from '../../logic/Actions';
+import {ManagementHeader}     from './management-header.compnt';
 
 declare var jQuery:any;
 declare var foundation:any;
@@ -65,28 +64,11 @@ export class ManagementAddCompnt {
   }
 
   submitForm(){
-    this._managementService.save(this.management)
-        .subscribe(
-          (item) => this._dispatcher.next(new AddManagementAction(
-                      item.title,item.link
-                    )),
-          (err)  => this._logger.log('an error ocurred on adding' + JSON.stringify(err)),
-          ()     => {
-            this._logger.log('section added!');
-        });
+
   }
 
   updateForm(){
-    this._managementService.update(this.management)
-        .subscribe(
-          (item) => this._dispatcher.next(
-                          new UpdateManagementAction(
-                            new ManagementModel(item.title,item.link)
-                    )),
-          err => this._logger.log('an error ocurred on updating'),
-          () => {
-          this._logger.log('section updated!');
-        });
+
   }
 
 }

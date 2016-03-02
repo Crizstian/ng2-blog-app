@@ -9,12 +9,7 @@ import {AboutCompnt}                    from './components/about/about.compnt';
 import {ContactCompnt}                  from './components/contact/contact.compnt';
 import {FooterCompnt}                   from './components/footer/footer.compnt';
 import {PostDetailCompnt}               from './components/post/post-detail.compnt';
-import {ManagementCompnt}               from './components/management/management.compnt';
-import {ManagementPostCompnt}           from './components/management/managementPost.compnt';
-import {ManagementPostDetailCompnt}     from './components/management/managementPostDetail.compnt';
-import {ManagementCategoriesCompnt}     from './components/management/managementCategories.compnt';
-import {ManagementCategoryDetailCompnt} from './components/management/managementCategoryDetail.compnt';
-import {ManagementResourcesCompnt}      from './components/management/managementResources.compnt';
+import {ManagementContainer}            from './components/management/managementContainer.compnt';
 import {LoginCompnt}                    from './components/Login/login.compnt';
 import {UserCompnt}                     from './components/User/user.compnt';
 import {UserDetailCompnt}               from './components/User/userDetail.compnt';
@@ -85,12 +80,7 @@ declare var foundation:any;
   {path: '/about',                 as: 'About',                component: AboutCompnt},
   {path: '/contact',               as: 'Contact',              component: ContactCompnt},
   {path: '/post/:id',              as: 'PostDetail',           component: PostDetailCompnt},
-  {path: '/management',            as: 'Management',           component: ManagementCompnt},
-  {path: '/management/post',       as: 'ManagementPost',       component: ManagementPostCompnt},
-  {path: '/management/post/:id',   as: 'ManagementPostDetail', component: ManagementPostDetailCompnt},
-  {path: '/management/categories', as: 'ManagementCategories', component: ManagementCategoriesCompnt},
-  {path: '/management/categories/:id', as: 'ManagementCategoryDetail', component: ManagementCategoryDetailCompnt},
-  {path: '/management/resources',  as: 'ManagementResources',  component: ManagementResourcesCompnt},
+  {path: '/management/...',        as: 'ManagementContainer',  component: ManagementContainer},
   {path: '/login',                 as: 'Login',                component: LoginCompnt},
   {path: '/users',                 as: 'ManagementUsers',      component: UserCompnt},
   {path: '/users/user/:id',        as: 'UsersDetail',          component: UserDetailCompnt},
@@ -98,9 +88,7 @@ declare var foundation:any;
   {path: '/resources/r/:id',       as: 'ResourcesDetail',      component: ResourcesDetailCompnt}
   ])
   export class AppComponent{
-    constructor(private elementRef: ElementRef,
-      @Inject(dispatcher) private _dispatcher: Observer<Action>,
-      @Inject(state) private _state: Observable<AppState>){
+    constructor(private elementRef: ElementRef){
           this.elementRef = elementRef;
     }
 

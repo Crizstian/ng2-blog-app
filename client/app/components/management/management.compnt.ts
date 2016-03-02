@@ -4,15 +4,16 @@ import {Router}               from 'angular2/router';
 import {Observable}           from 'rxjs/Observable';
 import {Observer}             from 'rxjs/Observer';
 import {AppState}             from '../../logic/AppState';
-import {Action,AddPostAction,
-        DeletePostAction}     from '../../logic/Actions';
+import {Action}               from '../../logic/Actions';
 import {Logger}               from '../../services/Logger.service';
+import {ManagementHeader}     from './management-header.compnt';
 
 declare var jQuery:any;
 declare var foundation:any;
 
 @Component({
   selector   : 'app-management',
+  directives : [ManagementHeader],
   templateUrl: 'app/components/management/templates/management.html'
 })
 export class ManagementCompnt implements OnInit{

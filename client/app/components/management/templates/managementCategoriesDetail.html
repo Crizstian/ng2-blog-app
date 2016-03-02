@@ -2,15 +2,11 @@
    <br>
    <!-- Contact Details -->
    <div class="row column">
-      <div class="callout">
-         <div class="section">
-            <h3><i class="mdi mdi-factory"></i> Post admin section</h3>
-            <h5><i class="mdi mdi-account"></i> User: Cristian Ramirez</h5>
-            <h5>
-               <a class="button small hollow" [routerLink]="['/ManagementCategories']">Back to categories </a>
-            </h5>
-         </div>
-      </div>
+     <manage-head
+       [type]="'category-edit'"
+       [section]="Category"
+       [user]="'Cristian Ramirez'">
+     </manage-head>
    </div>
    <div class="row column">
       <div class="callout">

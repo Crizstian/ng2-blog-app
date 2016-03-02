@@ -1,8 +1,8 @@
 import {Component,ElementRef,
         Inject,Input}         from 'angular2/core';
-import {RouteParams, Router,
-        RouterLink}           from 'angular2/router';
-import {FormBuilder,FORM_DIRECTIVES,
+import {RouteParams, Router}  from 'angular2/router';
+import {FormBuilder,
+        FORM_DIRECTIVES,
         ControlGroup,Control,
         Validators}           from 'angular2/common';
 import {PostService}          from '../../services/PostService.service';
@@ -13,7 +13,8 @@ import {Observable}           from 'rxjs/Observable';
 import {Observer}             from 'rxjs/Observer';
 import {dispatcher,state}     from '../../logic/newStateDispatcher';
 import {AppState}             from '../../logic/AppState';
-import {Action,}     from '../../logic/Actions';
+import {Action}               from '../../logic/Actions';
+import {ManagementHeader}     from './management-header.compnt';
 
 declare var jQuery:any;
 declare var foundation:any;
@@ -22,7 +23,7 @@ declare var basicEditor:any;
 
 @Component({
   selector    : 'management-post-detail',
-  directives  : [RouterLink],
+  directives  : [ManagementHeader],
   templateUrl : 'app/components/management/templates/managementPostDetail.html'
 })
 export class ManagementPostDetailCompnt {

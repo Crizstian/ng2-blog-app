@@ -10,13 +10,14 @@ import {Action,PostActions,stateAction}    from '../../logic/Actions';
 import {PostService}         from '../../services/PostService.service';
 import {Logger}              from '../../services/Logger.service';
 import {Post}                from '../../models/Post';
+import {ManagementHeader}    from './management-header.compnt';
 
 declare var jQuery:any;
 declare var foundation:any;
 
 @Component({
   selector   : 'app-management-post',
-  directives : [RouterLink],
+  directives : [RouterLink,ManagementHeader],
   templateUrl: 'app/components/management/templates/managementPost.html'
 })
 export class ManagementPostCompnt{

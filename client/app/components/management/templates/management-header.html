@@ -4,24 +4,24 @@
     <h5><i class="mdi mdi-account"></i> User: {{user}}</h5>
     <h5>
       <div *ngIf="type === 'managementTop'">
-        <a class="button small hollow" (click)="redirectLocation('ManagementAdd')"><i class="mdi mdi-plus"></i> Add new Section</a>
+        <a class="button small hollow" [routerLink]="['/ManagementContainer','ManagementAdd', {id: '0'}]"><i class="mdi mdi-plus"></i> Add new Section</a>
       </div>
-      <div *ngIf="type === 'management'">
-        <a class="button small hollow" (click)="redirectLocation('ManagementPostDetail')"><i class="mdi mdi-plus"></i> Add new post</a>
-        <a class="button small hollow" (click)="redirectLocation('Management')">Back to management</a>
+      <div *ngIf="type === 'management-post'">
+        <a class="button small hollow" [routerLink]="['/ManagementContainer','ManagementPostDetail', {id: '0'}]"><i class="mdi mdi-plus"></i> Add new post</a>
+        <a class="button small hollow" [routerLink]="['/ManagementContainer']">Back to management</a>
       </div>
       <div *ngIf="type === 'management-category'">
-        <a class="button small hollow" (click)="redirectLocation('ManagementCategoryDetail')"><i class="mdi mdi-plus"></i> Add new category</a>
-        <a class="button small hollow" (click)="redirectLocation('Management')">Back to management</a>
+        <a class="button small hollow" [routerLink]="['/ManagementContainer','ManagementCategoryDetail', {id: '0'}]"><i class="mdi mdi-plus"></i> Add new category</a>
+        <a class="button small hollow" [routerLink]="['/ManagementContainer']">Back to management</a>
       </div>
       <div *ngIf="type === 'post-edit'">
-        <a class="button small hollow" (click)="redirectLocation('ManagementPost')">Back to posts </a>
+        <a class="button small hollow" [routerLink]="['/ManagementContainer','ManagementPost']">Back to posts </a>
       </div>
       <div *ngIf="type === 'category-edit'">
-        <a class="button small hollow" (click)="redirectLocation('ManagementCategories')">Back to categories </a>
+        <a class="button small hollow" [routerLink]="['/ManagementContainer','ManagementCategories']">Back to categories </a>
       </div>
       <div *ngIf="type === 'section-edit'">
-        <a class="button small hollow" (click)="redirectLocation('Management')">Back to Management </a>
+        <a class="button small hollow" [routerLink]="['/ManagementContainer']">Back to Management </a>
       </div>
     </h5>
   </div>
