@@ -20,27 +20,32 @@ export class CategoryService{
 
   getAll():Observable<any> {
   	return this.http.get(this.baseAPI)
-                    .map(res => res.json());
+                    .map(res => res.json())
+                    .share();
   }
 
   save(category:Category):Observable<any> {
     return this.http.post(`${this.baseAPI}/add`, JSON.stringify(category))
-                    .map(res => res.json());
+                    .map(res => res.json())
+                    .share();
   }
 
   update(category:Category):Observable<any> {
     return this.http.put(`${this.baseAPI}/category/${category._id}`, JSON.stringify(category))
-                    .map(res => res.json());
+                    .map(res => res.json())
+                    .share();
   }
 
   get(id:string):Observable<any> {
   	return this.http.get(`${this.baseAPI}/category/${id}`)
-                    .map(res => res.json());
+                    .map(res => res.json())
+                    .share();
   }
 
   delete(id:string):Observable<any> {
   	return this.http.delete(`${this.baseAPI}/category/${id}`)
-                    .map(res => res.json());
+                    .map(res => res.json())
+                    .share();
   }
 
 }

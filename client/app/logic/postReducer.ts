@@ -5,61 +5,25 @@ import {AppState,stateRedux}        from './AppState';
 import {Post}                   from '../models/post';
 import {Action,PostActions,networkAction,stateAction}       from './Actions';
 import {Observable}                 from 'rxjs/Observable';
+import 'rxjs/add/operator/scan';
+import 'rxjs/add/operator/share';
 
-
-export function posts(initState: stateRedux, actions: Observable<Action>): Observable<Object> {
+export function posts(initState: Post[], actions: Observable<Action>): Observable<Post[]> {
   //State is the accumulator && Action is the current value
   return actions.scan((state, action) => {
-    let items = [];
-    switch(action.action.type){
-      // =============================
-      case stateAction.REQUEST_DATA:
 
-        return Object.assign({}, state, {
-          isFetching: true,
-          didInvalidate: false,
-          items: action.action.json.map(item => postReducer(item,'ADD_DATA'))
-        });
-      // =============================
-      case stateAction.RECEIVE_DATA:
-        let didInvalidate = false;
-        items         = state.items;
+    if(action instanceof PostActions.Action){
 
-        if(action.action.err){
-          didInvalidate = true;
-          items         = [];
-        }
-
-        return Object.assign({}, state, {
-            isFetching: false,
-            didInvalidate,
-            items
-          });
+      switch(action.action.type){
         // =============================
-        case stateAction.DELETE_DATA:
-          return Object.assign({}, state, {
-              isFetching: false,
-              didInvalidate: false,
-              items: state.items.filter(t => t._id !== action.action.id)
-            });
+        case stateAction.REQUEST_DATA:
+          return action.action.json.map(item => postReducer(item,'ADD_DATA'));
         // =============================
-        case stateAction.ADD_DATA:
-          return Object.assign({}, state, {
-              isFetching: false,
-              didInvalidate: false,
-              items: [...state.items, postReducer(action.action.json,stateAction.ADD_DATA)]
-            });
-        // =============================
-        case stateAction.UPDATE_DATA:
-          return Object.assign({}, state, {
-              isFetching: false,
-              didInvalidate: false,
-              items: state.items.map(item => (item._id !== action.action.id) ?
-                item : postReducer(item,stateAction.UPDATE_DATA))
-            });
-
+        case stateAction.RECEIVE_DATA:
+          return state;
+      }
     }
-  }, initState);
+  }, initState).share();
 }
 
 function postReducer(item:any,type:string) {

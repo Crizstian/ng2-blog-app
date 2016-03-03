@@ -50,7 +50,7 @@ export class ManagementCategoriesCompnt{
 
   get getCategories() {
 
-    return this._state.map(s => s.category.items.map(item => {return item}));
+    return this._state.map(s => s.category);
   }
 
   openCategory(id:string){

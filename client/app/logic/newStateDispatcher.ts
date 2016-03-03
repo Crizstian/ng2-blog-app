@@ -9,7 +9,6 @@ import {categories}                 from './categoryReducer';
 import {managements}                from './managementReducer';
 
 import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/scan';
 import 'rxjs/add/operator/zip';
 
 
@@ -18,22 +17,10 @@ const initDriver        = new OpaqueToken("initDriver");
 export const dispatcher = new OpaqueToken("dispatcher");
 export const state      = new OpaqueToken("state");
 
-const initValue:AppState = {
-  post: {
-    isFetching:false,
-    didInvalidate:false,
-    items: []
-  },
-  category: {
-    isFetching:false,
-    didInvalidate:false,
-    items: []
-  },
-  management: {
-    isFetching:false,
-    didInvalidate:false,
-    items: []
-  }
+const initValue = {
+  post:[],
+  category: [],
+  management: []
 }
 
 const drivers = {

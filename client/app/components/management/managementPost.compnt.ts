@@ -54,7 +54,7 @@ export class ManagementPostCompnt{
   }
 
   get getPosts() {
-    return this._state.map(s => s.post.items.map(item => {return item;}));
+    return this._state.map(s => s.post);
   }
 
   openPost(id:string){

@@ -17,28 +17,33 @@ export class ManagementService{
 
   getAll():Observable<any> {
   	return this.http.get(this.baseAPI)
-                    .map(res => res.json());
+                    .map(res => res.json())
+                    .share();
   }
 
   save(management:ManagementModel):Observable<any> {
     console.log(management);
     return this.http.post(`${this.baseAPI}/add`, JSON.stringify(management))
-                    .map(res => res.json());
+                    .map(res => res.json())
+                    .share();
   }
 
   update(management:ManagementModel):Observable<any> {
     return this.http.put(`${this.baseAPI}/management/${management._id}`, JSON.stringify(management))
-                    .map(res => res.json());
+                    .map(res => res.json())
+                    .share();
   }
 
   get(id:string):Observable<any> {
   	return this.http.get(`${this.baseAPI}/management/${id}`)
-                    .map(res => res.json());
+                    .map(res => res.json())
+                    .share();
   }
 
   delete(id:string):Observable<any> {
   	return this.http.delete(`${this.baseAPI}/management/${id}`)
-                    .map(res => res.json());
+                    .map(res => res.json())
+                    .share();
   }
 
 }

@@ -19,27 +19,32 @@ export class PostService{
 
   getAll():Observable<any> {
   	return this.http.get(this.baseAPI)
-                    .map(res => res.json());
+                    .map(res => res.json())
+                    .share();
   }
 
   save(post:Post):Observable<any> {
     return this.http.post(`${this.baseAPI}/add`, JSON.stringify(post))
-                    .map(res => res.json());
+                    .map(res => res.json())
+                    .share();
   }
 
   update(post:Post):Observable<any> {
     return this.http.put(`${this.baseAPI}/post/${post._id}`, JSON.stringify(post))
-                    .map(res => res.json());
+                    .map(res => res.json())
+                    .share();
   }
 
   get(id:string):Observable<any> {
   	return this.http.get(`${this.baseAPI}/post/${id}`)
-                    .map(res => res.json());
+                    .map(res => res.json())
+                    .share();
   }
 
   delete(id:string):Observable<any> {
   	return this.http.delete(`${this.baseAPI}/post/${id}`)
-                    .map(res => res.json());
+                    .map(res => res.json())
+                    .share();
   }
 
 }

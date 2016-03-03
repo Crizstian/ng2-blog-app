@@ -41,14 +41,19 @@ export class ManagementCompnt implements OnInit{
         type: stateAction.RECEIVE_DATA,
         err: err
       })),
-      ()     => this._dispatcher.next(new ManagementActions.Action({
+      ()     => {
+        this._dispatcher.next(new ManagementActions.Action({
         type: stateAction.RECEIVE_DATA
-      }))
+      }));
+      this._state.subscribe(s => {
+        console.log(s);
+      });
+    }
     );
   }
 
   get getManagements() {
-    return this._state.map(s => s.management.items.map(item => {return item;}));
+    return this._state.map(s => s.management);
   }
 
   openSection(id:string){

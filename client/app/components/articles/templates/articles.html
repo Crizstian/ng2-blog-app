@@ -1,42 +1,30 @@
 <br>
 <div class="contents">
-
   <div class="posts">
-
-    <div class="row">
-      <div class="column">
-
-        <div class="callout" *ngFor="#post of getPosts |async">
-
+    <div class="row small-up-1 medium-up-2 large-up-3">
+        <div class="column callout" *ngFor="#post of getPosts |async">
           <div class="article-title">
             <p class="lead">
               {{post.title}}
             </p>
           </div>
-
           <div class="article-content">
             <p class="subheader">
               {{post.content.substr(0,160)}} ...
             </p>
           </div>
-
           <div class="article-img">
             <!-- <img src="{{post.img}}" alt="image of a planet called Pegasi B"> -->
           </div>
-
           <div class="article-detail">
             <span class="label"><i class="mdi mdi-calendar"></i> 3/6/2015</span>
             <span class="label"><i class="mdi mdi-account"></i> Cristian Ramirez</span>
           </div>
-
           <a class="button hollow expanded" (click)="openPost(post._id)">Read More</a>
       </div>
-
-    </div>
   </div>
-
   <div class="row column">
     <a class="button expanded">Load More</a>
   </div>
-
+</div>
 </div>

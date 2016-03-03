@@ -5,10 +5,8 @@ import {Observable}           from 'rxjs/Observable';
 import {Observer}             from 'rxjs/Observer';
 import {dispatcher,state}     from '../../logic/newStateDispatcher';
 import {AppState}             from '../../logic/AppState';
-import {Action,
-        AddPostAction,
-        DeletePostAction}    from '../../logic/Actions';
-        
+import {Action,PostActions,stateAction}    from '../../logic/Actions';
+
 import {PostService}          from '../../services/PostService.service';
 import {Logger}               from '../../services/Logger.service';
 import {Post}                 from '../../models/Post';
@@ -34,18 +32,30 @@ export class ArticlesCompnt implements OnInit{
   ngOnInit() {
     jQuery(this._elementRef.nativeElement).foundation();
 
-    this._postService.getAll()
-        .subscribe((data) =>{
-          data.forEach((item) =>
-            this._dispatcher.next(new AddPostAction(item.title,item.content,item.img,new Date(item.created),item._id)
-          ));
-        },
-        (err) => console.log(err),
-        ()    => this._logger.log('Categories Data Fetched completed!'));
+    this._postService.getAll().subscribe(
+      (data) => this._dispatcher.next(new PostActions.Action({
+        service: 'POST',
+        type: stateAction.REQUEST_DATA,
+        json: data
+      })),
+      (err)  => this._dispatcher.next(new PostActions.Action({
+        type: stateAction.RECEIVE_DATA,
+        err: err
+      })),
+      ()     => {
+        this._dispatcher.next(new PostActions.Action({
+        type: stateAction.RECEIVE_DATA
+      }));
+      this._state.subscribe(s => {
+        console.log(s);
+      });
+    }
+    );
+
   }
 
   get getPosts() {
-    return this._state.map(s => s.post.map(item => {return item;}));
+    return this._state.map(s => s.post);
   }
 
 

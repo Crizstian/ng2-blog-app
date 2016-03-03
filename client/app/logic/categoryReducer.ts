@@ -6,61 +6,24 @@ import {Category}                   from '../models/category';
 import {Action,CategoryActions,networkAction,stateAction}       from './Actions';
 import {Observable}                 from 'rxjs/Observable';
 import {CategoryService}            from '../services/Category.service';
+import 'rxjs/add/operator/scan';
+import 'rxjs/add/operator/share';
 
 
-export function categories(initState: stateRedux, actions: Observable<Action>): Observable<Object> {
+export function categories(initState: Category[], actions: Observable<Action>): Observable<Category[]> {
   //State is the accumulator && Action is the current value
   return actions.scan((state, action) => {
-    let items = [];
-    switch(action.action.type){
-      // =============================
-      case stateAction.REQUEST_DATA:
-
-        return Object.assign({}, state, {
-          isFetching: true,
-          didInvalidate: false,
-          items: action.action.json.map(item => categoryReducer(item,'ADD_DATA'))
-        });
-      // =============================
-      case stateAction.RECEIVE_DATA:
-        let didInvalidate = false;
-        items         = state.items;
-
-        if(action.action.err){
-          didInvalidate = true;
-          items         = [];
-        }
-
-        return Object.assign({}, state, {
-            isFetching: false,
-            didInvalidate,
-            items
-          });
+    if(action instanceof CategoryActions.Action){
+      switch(action.action.type){
         // =============================
-        case stateAction.DELETE_DATA:
-          return Object.assign({}, state, {
-              isFetching: false,
-              didInvalidate: false,
-              items: state.items.filter(t => t._id !== action.action.id)
-            });
+        case stateAction.REQUEST_DATA:
+          return action.action.json.map(item => categoryReducer(item,'ADD_DATA'));
         // =============================
-        case stateAction.ADD_DATA:
-          return Object.assign({}, state, {
-              isFetching: false,
-              didInvalidate: false,
-              items: [...state.items, categoryReducer(action.action.json,stateAction.ADD_DATA)]
-            });
-        // =============================
-        case stateAction.UPDATE_DATA:
-          return Object.assign({}, state, {
-              isFetching: false,
-              didInvalidate: false,
-              items: state.items.map(item => (item._id !== action.action.id) ?
-                item : categoryReducer(item,stateAction.UPDATE_DATA))
-            });
-
+        case stateAction.RECEIVE_DATA:
+          return state;
+      }
     }
-  }, initState);
+  }, initState).share();
 }
 
 function categoryReducer(item:any,type:string) {

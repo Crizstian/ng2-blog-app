@@ -12,14 +12,11 @@ body{
 
   }
   .off-canvas-content{
-    height: 88vh;
-    overflow-y: scroll;
+    
   }
   .off-canvas.position-left{
     left: -320px;
     width: 320px;
-    height: 100vh;
-    overflow-y: scroll;
     background-image: linear-gradient(to bottom,#7099C9,#0C1C2D);
     .menu-canvas{
       ul{

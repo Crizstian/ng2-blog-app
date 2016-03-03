@@ -31,7 +31,7 @@ export const stateAction = {
 export module CategoryActions{
 
   interface Data {
-    service?:Observable<any>;
+    service?:string;
     type?:string;
     category?:Category
     id?:string;
@@ -51,7 +51,7 @@ type ActionCategory = CategoryActions.Action;
 export module PostActions{
 
   interface Data {
-    service?:Observable<any>;
+    service?:string;
     type?:string;
     post?:Post
     id?:string;
